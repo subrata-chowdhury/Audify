@@ -1,0 +1,30 @@
+.search-bar-container {
+    background: dodgerblue;
+    padding: 7px 10px;
+    display: grid;
+    grid-template-columns: 15px auto;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    gap: 10px;
+    position: relative;
+    left: 5%;
+    top: 15px;
+    border-radius: 5px;
+}
+
+.music-icon {
+    width: 100%;
+}
+
+.search-music-input {
+    width: 95%;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: #fff;
+}
+
+.search-music-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}

@@ -1,0 +1,21 @@
+.menubar {
+    width: 100%;
+    position: relative;
+    top: 20px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: 18px auto;
+    width: 100%;
+    gap: 10px;
+    padding-left: 2rem;
+    align-items: center;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.icon {
+    width: 100%;
+}
