@@ -1,0 +1,48 @@
+.featured-artist-container {
+    height: 20%;
+}
+
+.artists-container {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+    height: 55%;
+    position: relative;
+    top: 13px;
+}
+
+.artist {
+    background: #fff;
+    border-radius: 10px;
+    height: 100%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+}
+
+.square-thumbnail-container {
+    display: grid;
+    justify-content: center;
+}
+
+.square-thumbnail,
+.square-thumbnail-shadow {
+    width: 2rem;
+    height: 2rem;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.square-thumbnail-shadow {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    filter: blur(20px);
+    position: absolute;
+    top: 10%;
+    left: 55%;
+    transform: translate(-50%, 0%);
+    z-index: -1;
+}

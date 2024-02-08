@@ -1,0 +1,5 @@
+.recommendation-container {
+    display: grid;
+    grid-template-columns: 57% 40%;
+    gap: 3%;
+}

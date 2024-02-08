@@ -1,0 +1,30 @@
+.tracks-container {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 8px;
+    position: relative;
+    top: 13px;
+}
+
+.track-container {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    height: 3rem;
+    background: #fff;
+    gap: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.music-thumbnail.mini-thumbnail {
+    width: 2rem;
+    height: 2rem;
+}
+
+.music-thumbnail-shadow.mini-thumbnail {
+    width: 2rem;
+    height: 2rem;
+}

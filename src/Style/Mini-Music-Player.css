@@ -42,11 +42,11 @@
     align-items: center;
 }
 
-.music-details .music-name{
+.music-details .music-name {
     font-weight: bold;
 }
 
-.music-details .music-author{
+.music-details .music-author {
     display: grid;
     justify-content: center;
     align-items: center;
@@ -84,7 +84,7 @@
     border-radius: 2px;
 }
 
-.music-controls{
+.music-controls {
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: center;

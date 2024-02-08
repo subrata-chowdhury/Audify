@@ -21,3 +21,10 @@
 	border-radius: 10px;
 	overflow: hidden;
 }
+
+.section {
+	width: 90%;
+	position: relative;
+	top: 2%;
+	left: 5%;
+}

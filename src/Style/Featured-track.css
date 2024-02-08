@@ -1,0 +1,48 @@
+.featured-track-container {
+    height: 30%;
+}
+
+.music-details-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 73% auto;
+    align-items: center;
+    gap: 2%;
+}
+
+.music-progress-bar-container {
+    width: 100%;
+    height: 60%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.current-music {
+    width: 100%;
+    background: #fff;
+    height: 20%;
+    border-radius: 100px;
+    padding: 5px 0px;
+    display: grid;
+    grid-template-columns: 30% auto;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.current-music-details {
+    font-size: 12px;
+}
+
+.music-thumbnail.mini-thumbnail {
+    width: 2rem;
+    height: 2rem;
+}
+
+.music-thumbnail-shadow.mini-thumbnail {
+    width: 2rem;
+    height: 2rem;
+}

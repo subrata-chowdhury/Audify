@@ -1,6 +1,6 @@
 import "../Style/Search-bar.css"
 
-export function SearchBar() {
+export default function SearchBar() {
     return (
         <div className="search-bar-container">
             <img src="./Icons/music.svg" alt="music" className="music-icon" />
