@@ -15,7 +15,7 @@ export default function Menubar() {
 
 export function Menu({ img, menuName }) {
     return (
-        <div className="menu">
+        <div className="menu normal-text-font-size">
             <img src={img} alt={menuName} className="icon" />
             <div>{menuName}</div>
         </div>

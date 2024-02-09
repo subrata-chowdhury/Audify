@@ -1,10 +1,10 @@
-import { MusicThumbnail } from "./Mini-Music-Player"
+import MusicThumbnail from "./Thumbnail"
 import "../Style/Track-recommendation.css"
 
 export default function TrackRecommendation() {
     return (
         <div className="track-recommendation-container">
-            <div>Tracks selected for you</div>
+            <div className="heading-font-size">Tracks selected for you</div>
             <div className="tracks-container">
                 <Track />
                 <Track />
@@ -16,12 +16,18 @@ export default function TrackRecommendation() {
     )
 }
 
-function Track({ thumbnail, trackName = "Unknown", trackAuthor = "unknown" }) {
+function Track({ thumbnail = "../Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackTime = "NaN", audioSource = "Not Defined" }) {
+
+    function setAudioSource(audioSource) {
+        document.querySelector(".audio source").src = audioSource;
+    }
+
     return (
-        <div className="track-container">
+        <div className="track-container normal-text-font-size" onClick={() => { setAudioSource(audioSource) }}>
             <MusicThumbnail thumbnail={thumbnail} className="mini-thumbnail" />
             <div className="track-name">{trackName}</div>
             <div className="track-author">{trackAuthor}</div>
+            <div className="album-track-time">{trackTime}</div>
         </div>
     )
 }

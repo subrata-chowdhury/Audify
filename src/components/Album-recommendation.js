@@ -1,11 +1,11 @@
-import { MusicThumbnail } from "./Mini-Music-Player"
+import MusicThumbnail, { SquareThumbnail } from "./Thumbnail"
 import "../Style/Album-recommendation.css"
-import { SquareThumbnail } from "./Featured-artist"
+import thumbnail from "../Assets/FRESHERBRINE.jpeg"
 
 export default function AlbumRecommendation() {
     return (
         <div className="Album-recommendation-container">
-            <div>Album & sets selected for you</div>
+            <div className="heading-font-size">Album & sets selected for you</div>
             <div className="album-container">
                 <Album />
                 <Album />
@@ -17,20 +17,20 @@ export default function AlbumRecommendation() {
 function Album() {
     return (
         <div className="album">
-            <MusicThumbnail />
+            <MusicThumbnail thumbnail={thumbnail} createDot={true} />
             <div className="album-details">
-                <div className="album-name"></div>
-                <div className="album-author"></div>
+                <div className="album-name">Unknown</div>
+                <div className="album-track-count">NaN Tracks</div>
             </div>
             <Track />
         </div>
     )
 }
 
-function Track({ trackName = "Unknown", trackAuthor = "unknown" }) {
+function Track({ thumbnail = "../Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown" }) {
     return (
-        <div className="album-track-container">
-            <SquareThumbnail />
+        <div className="album-track-container normal-text-font-size">
+            <SquareThumbnail thumbnail={thumbnail} />
             <div className="album-track-details">
                 <div className="album-track-name">{trackName}</div>
                 <div className="album-track-author">{trackAuthor}</div>

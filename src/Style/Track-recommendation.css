@@ -9,22 +9,12 @@
 .track-container {
     width: 100%;
     display: grid;
-    grid-auto-flow: column;
+    grid-template-columns: 4rem auto auto auto;
     align-items: center;
     height: 3rem;
     background: #fff;
     gap: 5px;
     border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-
-.music-thumbnail.mini-thumbnail {
-    width: 2rem;
-    height: 2rem;
-}
-
-.music-thumbnail-shadow.mini-thumbnail {
-    width: 2rem;
-    height: 2rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
 }

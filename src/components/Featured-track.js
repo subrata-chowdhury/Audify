@@ -1,10 +1,10 @@
-import { MusicThumbnail } from "./Mini-Music-Player";
+import MusicThumbnail from "./Thumbnail"
 import "../Style/Featured-track.css"
 
 export default function FeaturedTrack({ thumbnail, trackName }) {
     return (
         <div className="featured-track-container section">
-            <div>Featured Track</div>
+            <div className="heading-font-size">Featured Track</div>
             <div className="music-details-container">
                 <MusicProgressBar />
 
@@ -13,7 +13,7 @@ export default function FeaturedTrack({ thumbnail, trackName }) {
                         <MusicThumbnail thumbnail={thumbnail} className={"mini-thumbnail"} />
                     </div>
                     <div className="current-music-details">
-                        <div className="current-music-text">Playing...</div>
+                        <div className="current-music-text">Paused</div>
                         <div className="current-music-name">{trackName}</div>
                     </div>
                 </div>

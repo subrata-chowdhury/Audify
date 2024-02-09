@@ -1,0 +1,60 @@
+.thumbnail-container {
+    display: grid;
+    justify-content: center;
+}
+
+.thumbnail,
+.thumbnail-shadow {
+    z-index: 4;
+}
+
+.thumbnail-shadow {
+    border: none;
+    position: absolute;
+    z-index: 2;
+}
+
+.circle.thumbnail {
+    width: 5.5rem;
+    height: 5.5rem;
+    border: 4px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.circle.thumbnail-shadow {
+    width: 6rem;
+    height: 6rem;
+    left: 7px;
+    top: 5px;
+    border-radius: 50%;
+    filter: blur(15px);
+}
+
+.square.thumbnail {
+    width: 2.2rem;
+    height: 2.2rem;
+    border: none;
+    border-radius: 10px;
+}
+
+/* 
+.square.thumbnail-shadow{
+    width: 2.5rem;
+    height: 2.5rem;
+    left: 3px;
+    top: 3px;
+    filter: blur(10px);
+} */
+
+.thumbnail-dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .6);
+    z-index: 5;
+    backdrop-filter: blur(10px);
+}

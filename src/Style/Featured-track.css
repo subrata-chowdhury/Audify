@@ -15,7 +15,7 @@
     height: 60%;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 
 
@@ -24,25 +24,28 @@
 .current-music {
     width: 100%;
     background: #fff;
-    height: 20%;
     border-radius: 100px;
     padding: 5px 0px;
     display: grid;
     grid-template-columns: 30% auto;
     align-items: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 
 .current-music-details {
     font-size: 12px;
 }
 
-.music-thumbnail.mini-thumbnail {
+.current-music-text {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.thumbnail.mini-thumbnail,
+.thumbnail-shadow.mini-thumbnail {
     width: 2rem;
     height: 2rem;
 }
 
-.music-thumbnail-shadow.mini-thumbnail {
-    width: 2rem;
-    height: 2rem;
+.thumbnail-shadow.mini-thumbnail {
+    filter: blur(8px);
 }

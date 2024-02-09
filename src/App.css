@@ -19,7 +19,6 @@
 	display: grid;
 	grid-template-columns: 23% auto;
 	border-radius: 10px;
-	overflow: hidden;
 }
 
 .section {
@@ -27,4 +26,12 @@
 	position: relative;
 	top: 2%;
 	left: 5%;
+}
+
+.heading-font-size {
+	font-size: 18px;
+}
+
+.normal-text-font-size {
+	font-size: 14px;
 }

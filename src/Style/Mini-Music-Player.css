@@ -6,33 +6,6 @@
     justify-content: center;
 }
 
-.music-thumbnail-container {
-    display: grid;
-    justify-content: center;
-}
-
-.music-thumbnail,
-.music-thumbnail-shadow {
-    width: 5.5rem;
-    height: 5.5rem;
-    object-position: center;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #fff;
-}
-
-.music-thumbnail-shadow {
-    width: 6rem;
-    height: 6rem;
-    border: none;
-    filter: blur(20px);
-    position: absolute;
-    top: 10%;
-    left: 55%;
-    transform: translate(-50%, 0%);
-    z-index: -1;
-}
-
 
 
 
@@ -67,6 +40,7 @@
     height: 3px;
     background: #fff;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .duration {
@@ -97,4 +71,18 @@
     width: 12px;
     height: 12px;
     cursor: pointer;
+}
+
+.mini-music-player .thumbnail-container.active {
+    animation: infiniteRotate 5s linear infinite;
+}
+
+@keyframes infiniteRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
