@@ -49,3 +49,18 @@
 .thumbnail-shadow.mini-thumbnail {
     filter: blur(8px);
 }
+
+
+
+
+.music-progress-bar-container {
+    display: grid;
+    grid-auto-flow: column;
+    width: 95%;
+}
+
+.music-progress-bar-container .bar {
+    background: dodgerblue;
+    -webkit-box-reflect: below 1px linear-gradient(#0001, #0004);
+    border-radius: 4px 4px 0 0;
+}

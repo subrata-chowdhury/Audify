@@ -18,6 +18,12 @@ export default function TrackRecommendation() {
 
 function Track({ thumbnail = "../Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackTime = "NaN", audioSource = "Not Defined" }) {
 
+    if(thumbnail === "") thumbnail = "../Icons/Music-icon3.jpg";
+    if(audioSource === "") audioSource = "Not Defined";
+    if(trackName === "") trackName = "Unknown";
+    if(trackAuthor === "") trackAuthor = "unknown";
+    if(trackTime === "") trackTime = "NaN";
+
     function setAudioSource(audioSource) {
         document.querySelector(".audio source").src = audioSource;
     }

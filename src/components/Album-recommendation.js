@@ -1,6 +1,6 @@
 import MusicThumbnail, { SquareThumbnail } from "./Thumbnail"
 import "../Style/Album-recommendation.css"
-import thumbnail from "../Assets/FRESHERBRINE.jpeg"
+// import thumbnail from "../Assets/FRESHERBRINE.jpeg"
 
 export default function AlbumRecommendation() {
     return (
@@ -14,20 +14,30 @@ export default function AlbumRecommendation() {
     )
 }
 
-function Album() {
+function Album({thumbnail = "../Icons/Music-icon3.jpg", albumName = "Unknown", albumTrackCount = "NaN", trackThumbnail, trackName, trackAuthor}) {
+
+    if(thumbnail === "") thumbnail = "../Icons/Music-icon3.jpg";
+    if(albumName === "") albumName = "Unknown";
+    if(albumTrackCount === "") albumTrackCount = "NaN";
+
     return (
         <div className="album">
             <MusicThumbnail thumbnail={thumbnail} createDot={true} />
             <div className="album-details">
-                <div className="album-name">Unknown</div>
-                <div className="album-track-count">NaN Tracks</div>
+                <div className="album-name">{albumName}</div>
+                <div className="album-track-count">{albumTrackCount} Tracks</div>
             </div>
-            <Track />
+            <Track thumbnail={trackThumbnail} trackName={trackName} trackAuthor={trackAuthor} />
         </div>
     )
 }
 
 function Track({ thumbnail = "../Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown" }) {
+
+    if(thumbnail === "") thumbnail = "../Icons/Music-icon3.jpg";
+    if(trackName === "") trackName = "Unknown";
+    if(trackAuthor === "") trackAuthor = "unknown";
+
     return (
         <div className="album-track-container normal-text-font-size">
             <SquareThumbnail thumbnail={thumbnail} />

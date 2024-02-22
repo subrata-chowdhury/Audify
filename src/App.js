@@ -15,11 +15,20 @@ import ThreeDot from './components/three-dot'
 import FeaturedTrack from './components/Featured-track'
 import FeaturedArtist from './components/Featured-artist'
 import Recommendation from './components/Recommendation'
+import AddAudio from './components/Add-audio'
+
+import { createStore } from 'redux';
+import AudioReducer from './components/AudioReducer';
+import React from 'react';
+import { Provider } from 'react-redux';
+
+const store = createStore(AudioReducer);
 
 function App() {
 	return (
-		<>
+		<Provider store={store}>
 			<img className='bg' src={bg} alt='Background' />
+			<AddAudio />
 			<div className="app">
 				<div className='left-side'>
 					<ThreeDot />
@@ -34,7 +43,7 @@ function App() {
 					<Recommendation />
 				</div>
 			</div>
-		</>
+		</Provider>
 	)
 }
 

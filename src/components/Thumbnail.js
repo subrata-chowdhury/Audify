@@ -1,10 +1,10 @@
 
 import "../Style/Thumbnail.css"
 
-export default function MusicThumbnail({ thumbnail = "./Icons/user.svg", className = "", createDot = false }) {
+export default function MusicThumbnail({ thumbnail, className = "", createDot = false }) {
     const containerStyle = {
         position: 'relative',
-        background: `url(${thumbnail})`,
+        backgroundImage: `url(${thumbnail})`,
     };
     const spanStyle = {
         content: `url(${thumbnail})`,
@@ -25,10 +25,10 @@ export default function MusicThumbnail({ thumbnail = "./Icons/user.svg", classNa
     )
 }
 
-export function SquareThumbnail({ thumbnail = "./Icons/user.svg", className = "" }) {
+export function SquareThumbnail({ thumbnail, className = "" }) {
     const containerStyle = {
         position: 'relative',
-        background: `url(${thumbnail})`,
+        backgroundImage: `url(${thumbnail})`,
     };
     // const spanStyle = {
     //     content: `url(${thumbnail})`,

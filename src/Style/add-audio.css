@@ -1,0 +1,21 @@
+.add-audio {
+    position: fixed;
+    left: 15px;
+    bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-audio img {
+    width: 20px;
+    height: 20px;
+}
+
+.audioInput{
+    display: none;
+}

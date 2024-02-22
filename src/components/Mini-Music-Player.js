@@ -1,18 +1,43 @@
 import "../Style/Mini-Music-Player.css"
 import MusicThumbnail from "./Thumbnail"
-import { useEffect, useRef, useState } from "react"
+import React, { useState } from "react"
+import { connect } from 'react-redux';
 
-export default function MiniMusicPlayer({ thumbnail, trackName, trackAuthor }) {
+const MiniMusicPlayer = ({ audioRef, audioThumbnailSrc = "../Icons/Music-icon3.jpg", audioName = "Unknown", audioArtist= "unknown"}) => {
+
+    if (audioThumbnailSrc === "") audioThumbnailSrc = "../Icons/Music-icon3.jpg";
+    if (audioName === "") audioName = "Unknown";
+    if (audioArtist === "") audioArtist = "unknown";
+
     return (
         <div className="mini-music-player">
-            <MusicThumbnail thumbnail={thumbnail} createDot={true} />
-            <MusicDetails musicName={trackName} musicAuthor={trackAuthor} />
-            <Controls />
+            <MusicThumbnail thumbnail={audioThumbnailSrc} createDot={true} />
+            <MusicDetails musicName={audioName} musicAuthor={audioArtist} />
+            <Controls audioRef={audioRef} />
         </div>
     )
 }
 
-function MusicDetails({ musicName, musicAuthor }) {
+const mapStateToProps = (state) => {
+    return {
+        audioRef: state.audioRef,
+        audioThumbnailSrc: state.audioThumbnailSrc,
+        audioName: state.audioName,
+        audioArtist:  state.audioArtist,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiniMusicPlayer)
+
+function MusicDetails({ musicName = "Unknown", musicAuthor = "unknown" }) {
+
+    if (musicName === "") musicName = "Unknown";
+    if (musicAuthor === "") musicAuthor = "unknown";
+
     return (
         <div className="music-details">
             <div className="music-name">{musicName}</div>
@@ -21,41 +46,33 @@ function MusicDetails({ musicName, musicAuthor }) {
     )
 }
 
-function Controls() {
+const Controls = ({ audioRef })=> {
     const [playPauseIcon, SetPlayPauseIcon] = useState("./Icons/Play.svg");
-    const [currentTime, setCurrentTime] = useState('0')
-    const [duration, setDuration] = useState('0')
 
-    const audioRef = useRef(null)
-    useEffect(() => {
-        audioRef.current.addEventListener('loadeddata', () => {
-            setDuration(audioRef.current.duration);
-            audioRef.current.addEventListener("timeupdate", () => {
-                setCurrentTime(audioRef.current.currentTime);
-            })
-        })
+    const [duration, setDuration] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
 
-        audioRef.current.addEventListener("play", () => {
-            document.querySelector(".current-music-text").innerHTML = "Playing...";
-        })
-        audioRef.current.addEventListener("pause", () => {
-            document.querySelector(".current-music-text").innerHTML = "Paused";
-        })
+    audioRef.addEventListener("loadedmetadata", ()=>{
+        setDuration(audioRef.duration)
+    })
+
+    audioRef.addEventListener("timeupdate", ()=>{
+        setCurrentTime(audioRef.currentTime)
     })
 
     function playPauseBtnClickHandler() {
-        if (playPauseIcon === "./Icons/Play.svg") {
-            audioRef.current.play();
+        if (audioRef.paused) {
+            audioRef.play();
             SetPlayPauseIcon("./Icons/Pause.svg");
         } else {
-            audioRef.current.pause();
+            audioRef.pause();
             SetPlayPauseIcon("./Icons/Play.svg");
         }
     }
 
     function forward(value) {
-        if (value > 0) audioRef.current.currentTime += value;
-        else audioRef.current.currentTime -= value;
+        if (value > 0) audioRef.currentTime += value;
+        else audioRef.currentTime -= value;
     }
 
     return (
@@ -66,11 +83,6 @@ function Controls() {
                 <img src={playPauseIcon} alt="" className="music-control" onClick={playPauseBtnClickHandler} />
                 <img src="./Icons/fast-forward.svg" alt="" className="music-control" onClick={() => { forward(10) }} />
             </div>
-
-            <audio className='audio' ref={audioRef}>
-                <source src="./Audio/Way Back Home.mp3" type="audio/mp3" />
-                Your browser does not support the audio tag.
-            </audio>
         </div>
     )
 }
