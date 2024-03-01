@@ -14,11 +14,11 @@ export default function AlbumRecommendation() {
     )
 }
 
-function Album({thumbnail = "../Icons/Music-icon3.jpg", albumName = "Unknown", albumTrackCount = "NaN", trackThumbnail, trackName, trackAuthor}) {
+function Album({ thumbnail = "../Icons/Music-icon3.jpg", albumName = "Unknown", albumTrackCount = "NaN", trackThumbnail, trackName, trackAuthor }) {
 
-    if(thumbnail === "") thumbnail = "../Icons/Music-icon3.jpg";
-    if(albumName === "") albumName = "Unknown";
-    if(albumTrackCount === "") albumTrackCount = "NaN";
+    if (thumbnail === "") thumbnail = "../Icons/Music-icon3.jpg";
+    if (albumName === "") albumName = "Unknown";
+    if (albumTrackCount === "") albumTrackCount = "NaN";
 
     return (
         <div className="album">
@@ -34,9 +34,9 @@ function Album({thumbnail = "../Icons/Music-icon3.jpg", albumName = "Unknown", a
 
 function Track({ thumbnail = "../Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown" }) {
 
-    if(thumbnail === "") thumbnail = "../Icons/Music-icon3.jpg";
-    if(trackName === "") trackName = "Unknown";
-    if(trackAuthor === "") trackAuthor = "unknown";
+    if (thumbnail === "") thumbnail = "../Icons/Music-icon3.jpg";
+    if (trackName === "") trackName = "Unknown";
+    if (trackAuthor === "") trackAuthor = "unknown";
 
     return (
         <div className="album-track-container normal-text-font-size">

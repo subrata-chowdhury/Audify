@@ -3,12 +3,20 @@ const initialState = {
     audioName: "Way Back Home",
     audioArtist: "unknown",
     audioRef: new Audio("./Audio/Way Back Home.mp3"), // Add audioRef to the initial state
+    audioFrequency: [],
 };
 
 const audioReducer = (state = initialState, action) => {
+
+    function setNewAudio(src) {
+        let audio = new Audio(src);
+        audio.play();
+        return audio;
+    }
+
     switch (action.type) {
         case 'SET_AUDIO_SRC':
-            return { ...state, audioRef: new Audio(action.payload) };
+            return { ...state, audioRef: setNewAudio(action.payload) };
         case 'SET_AUDIO_THUMBNAIL_SRC':
             return { ...state, audioThumbnailSrc: action.payload }
         case 'SET_AUDIO_NAME':

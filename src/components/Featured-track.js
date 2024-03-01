@@ -9,10 +9,10 @@ const FeaturedTrack = ({ audioRef, audioThumbnailSrc = "../Icons/Music-icon3.jpg
     if (audioName === "") audioName = "Unknown";
 
     const [playPauseText, setPlayPauseIcon] = useState("Paused");
-    audioRef.addEventListener("play",()=>{
+    audioRef.addEventListener("play", () => {
         setPlayPauseIcon("Playing..");
     })
-    audioRef.addEventListener("pause",()=>{
+    audioRef.addEventListener("pause", () => {
         setPlayPauseIcon("Paused");
     })
 
@@ -20,7 +20,7 @@ const FeaturedTrack = ({ audioRef, audioThumbnailSrc = "../Icons/Music-icon3.jpg
         <div className="featured-track-container section">
             <div className="heading-font-size">Featured Track</div>
             <div className="music-details-container">
-                <MusicProgressBar />
+                <MusicProgressBar audioRef={audioRef} />
 
                 <div className="current-music">
                     <div className="current-music-thumbnail-container">
@@ -50,22 +50,20 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeaturedTrack)
 
-function MusicProgressBar() {
+function MusicProgressBar({ audioRef }) {
 
-    function Bar({ w, h }) {
-        let barStyle = {
-            width: `${w}px`,
-            height: `${h}%`
-        }
-
+    function Bar({ h }) {
         return (
-            <div className="bar" style={barStyle}></div>
+            <div className="bar">
+                <div className="inner-bar" style={{ height: `${h}%`, top: `${100 - h}%` }}></div>
+            </div>
         )
     }
 
-    const bars = [];
-    for (var i = 0; i < 50; i++) {
-        bars.push(<Bar w="5" h="50" key={i} />)
+    let bars = [];
+    bars = [];
+    for (var i = 0; i < 74; i++) {
+        bars.push(<Bar h={((Math.random() * 100) + 5)} key={i} />)
     }
 
     return (

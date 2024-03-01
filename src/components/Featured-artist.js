@@ -17,8 +17,8 @@ export default function FeaturedArtist() {
 
 function Artist({ thumbnail = "../Icons/Artist.png", artistName = "Unknown" }) {
 
-    if(thumbnail === "") thumbnail = "../Icons/Artist.png";
-    if(artistName === "") artistName = "Unknown";
+    if (thumbnail === "") thumbnail = "../Icons/Artist.png";
+    if (artistName === "") artistName = "Unknown";
 
     return (
         <div className="artist normal-text-font-size">

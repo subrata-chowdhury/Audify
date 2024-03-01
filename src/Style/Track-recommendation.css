@@ -9,8 +9,9 @@
 .track-container {
     width: 100%;
     display: grid;
-    grid-template-columns: 4rem auto auto auto;
+    grid-template-columns: 3rem 40% 15% 8%;
     align-items: center;
+    justify-content: space-evenly;
     height: 3rem;
     background: #fff;
     gap: 5px;
