@@ -15,9 +15,9 @@ export default function FeaturedArtist() {
     )
 }
 
-function Artist({ thumbnail = "../Icons/Artist.png", artistName = "Unknown" }) {
+function Artist({ thumbnail = "./Icons/Artist.png", artistName = "Unknown" }) {
 
-    if (thumbnail === "") thumbnail = "../Icons/Artist.png";
+    if (thumbnail === "") thumbnail = "./Icons/Artist.png";
     if (artistName === "") artistName = "Unknown";
 
     return (
