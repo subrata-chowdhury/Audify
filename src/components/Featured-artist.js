@@ -4,7 +4,7 @@ import { SquareThumbnail } from "./Thumbnail"
 export default function FeaturedArtist() {
     return (
         <div className="featured-artist-container section">
-            <div className="heading-font-size">Featured Track</div>
+            <div className="heading-font-size">Featured Artists</div>
             <div className="artists-container">
                 <Artist />
                 <Artist />
