@@ -1,3 +1,9 @@
+# A Music Player
+It's a simple music player UI created using ReactJS and redux. It is the version 2 of my previous music player which is available [here](https://github.com/Super7000/My-Second-UI)
+<h3>Here are some pictures which will help you to understand the code modules.</h3>
+<img src="https://github.com/Super7000/My-Second-UI-V2/assets/86580414/4e607212-9b9d-4e9f-a218-f5e8fe374d49">
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
