@@ -17,9 +17,9 @@ const TrackRecommendation = ({ audioRef, setAudioSrc, setAudioName, setAudioArti
     )
 }
 
-function Track({ thumbnail = "../Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackDuration = "NaN", audioSource = "Not Defined", audioRef, setAudioSrc, setAudioName, setAudioArtist }) {
+function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackDuration = "NaN", audioSource = "Not Defined", audioRef, setAudioSrc, setAudioName, setAudioArtist }) {
 
-    if (thumbnail === "") thumbnail = "../Icons/Music-icon3.jpg";
+    if (thumbnail === "") thumbnail = "./Icons/Music-icon3.jpg";
     if (audioSource === "") audioSource = "Not Defined";
     if (trackName === "") trackName = "Unknown";
     if (trackAuthor === "") trackAuthor = "unknown";
