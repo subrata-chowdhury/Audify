@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useRef } from "react";
 import "../Style/add-audio.css";
 import { connect } from 'react-redux';
 
@@ -21,17 +21,13 @@ const AddAudio = ({ audioRef, setAudioSrc, setAudioName, setAudioArtist }) => {
         }
     };
 
-    useEffect(() => {
-        document.querySelector(".add-audio").addEventListener("click", () => {
-            document.querySelector(".audioInput").click();
-        })
-    }, [])
+    const audioInput = useRef()
     return (
         <div>
-            <div className='add-audio'>
+            <div className='add-audio' onClick={() => { audioInput.current.click() }}>
                 <img src="./Icons/plus.svg" alt=""></img>
             </div>
-            <input type="file" id="audioInput" className="audioInput" accept="audio/*" onChange={handleFileChange}></input>
+            <input type="file" id="audioInput" className="audioInput" accept="audio/*" onChange={handleFileChange} ref={audioInput}></input>
         </div>
     )
 }

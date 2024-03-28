@@ -47,23 +47,23 @@ function MusicDetails({ musicName = "Unknown", musicAuthor = "unknown" }) {
 }
 
 const Controls = ({ audioRef }) => {
-    const [playPauseIcon, SetPlayPauseIcon] = useState("./Icons/Play.svg");
+    const [playPauseIcon, setPlayPauseIcon] = useState("./Icons/Play.svg");
 
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
 
-    useEffect(()=>{
+    useEffect(() => {
         audioRef.addEventListener("loadedmetadata", () => {
             setDuration(audioRef.duration)
         })
         audioRef.addEventListener("timeupdate", () => {
             setCurrentTime(audioRef.currentTime)
         })
-    },[audioRef])
+    }, [audioRef])
 
     useEffect(() => {
-        if (audioRef.paused) SetPlayPauseIcon("./Icons/Play.svg");
-        else SetPlayPauseIcon("./Icons/Pause.svg");
+        if (audioRef.paused) setPlayPauseIcon("./Icons/Play.svg");
+        else setPlayPauseIcon("./Icons/Pause.svg");
     }, [audioRef.paused, audioRef])
 
     function playPauseBtnClickHandler() {

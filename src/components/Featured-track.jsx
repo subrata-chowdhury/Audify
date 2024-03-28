@@ -55,22 +55,26 @@ export default connect(mapStateToProps, mapDispatchToProps)(FeaturedTrack)
 
 function MusicProgressBar({ audioFrequency }) {
 
-    function Bar({ h }) {
-        return (
-            <div className="bar">
-                <div className="inner-bar" style={{ height: `${h}%`, top: `${100 - h}%` }}></div>
-            </div>
-        )
-    }
-
     let bars = [];
-    for (var i = 0; i < 74; i++) {
-        bars.push(<Bar h={((Math.random() * 100) + 5)} key={i} />)
+    function calculateBars() {
+        bars = []
+        for (var i = 0; i < 74; i++) {
+            bars.push(<Bar h={((Math.random() * 100) + 5)} key={i} />)
+        }
     }
+    calculateBars()
 
     return (
         <div className="music-progress-bar-container">
             {bars}
+        </div>
+    )
+}
+
+function Bar({ h }) {
+    return (
+        <div className="bar">
+            <div className="inner-bar" style={{ height: `${h}%`, top: `${100 - h}%` }}></div>
         </div>
     )
 }
