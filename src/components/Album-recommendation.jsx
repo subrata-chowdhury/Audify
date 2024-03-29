@@ -1,8 +1,9 @@
 import MusicThumbnail, { SquareThumbnail } from "./Thumbnail"
 import "../Style/Album-recommendation.css"
+import { memo } from "react";
 // import thumbnail from "../Assets/FRESHERBRINE.jpeg"
 
-export default function AlbumRecommendation() {
+function AlbumRecommendation() {
     return (
         <div className="Album-recommendation-container">
             <div className="heading-font-size">Album & sets selected for you</div>
@@ -13,6 +14,8 @@ export default function AlbumRecommendation() {
         </div>
     )
 }
+
+export default memo(AlbumRecommendation)
 
 function Album({ thumbnail = "./Icons/Music-icon3.jpg", albumName = "Unknown", albumTrackCount = "NaN", trackThumbnail, trackName, trackAuthor }) {
 

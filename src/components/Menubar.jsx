@@ -1,6 +1,7 @@
+import { memo } from "react"
 import "../Style/Menubar.css"
 
-export default function Menubar() {
+function Menubar() {
     return (
         <div className="menubar">
             <Menu img={"./Icons/dashboard.png"} menuName={"Dashboard"} />
@@ -12,6 +13,8 @@ export default function Menubar() {
         </div>
     )
 }
+
+export default memo(Menubar)
 
 export function Menu({ img, menuName }) {
     return (

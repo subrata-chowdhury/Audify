@@ -1,6 +1,6 @@
 import MusicThumbnail from "./Thumbnail"
 import "../Style/Featured-track.css"
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { connect } from 'react-redux';
 
 const FeaturedTrack = ({ audioRef, audioThumbnailSrc = "./Icons/Music-icon3.jpg", audioName = "Unknown", audioFrequency }) => {
@@ -8,13 +8,13 @@ const FeaturedTrack = ({ audioRef, audioThumbnailSrc = "./Icons/Music-icon3.jpg"
     if (audioThumbnailSrc === "") audioThumbnailSrc = "./Icons/Music-icon3.jpg";
     if (audioName === "") audioName = "Unknown";
 
-    const [playPauseText, setPlayPauseIcon] = useState("Paused");
+    const [playPauseText, setPlayPauseText] = useState("Paused");
     useEffect(() => {
         audioRef.addEventListener("play", () => {
-            setPlayPauseIcon("Playing..");
+            setPlayPauseText("Playing..");
         })
         audioRef.addEventListener("pause", () => {
-            setPlayPauseIcon("Paused");
+            setPlayPauseText("Paused");
         })
     }, [audioRef])
 
@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeaturedTrack)
 
-function MusicProgressBar({ audioFrequency }) {
+const MusicProgressBar = memo(({ audioFrequency }) => {
 
     let bars = [];
     function calculateBars() {
@@ -69,7 +69,7 @@ function MusicProgressBar({ audioFrequency }) {
             {bars}
         </div>
     )
-}
+})
 
 function Bar({ h }) {
     return (

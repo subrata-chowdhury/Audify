@@ -1,7 +1,8 @@
 
+import { memo } from "react";
 import "../Style/Thumbnail.css"
 
-export default function MusicThumbnail({ thumbnail, className = "", createDot = false }) {
+function MusicThumbnail({ thumbnail, className = "", createDot = false }) {
     const containerStyle = {
         position: 'relative',
         backgroundImage: `url(${thumbnail})`,
@@ -25,7 +26,9 @@ export default function MusicThumbnail({ thumbnail, className = "", createDot = 
     )
 }
 
-export function SquareThumbnail({ thumbnail, className = "" }) {
+export default memo(MusicThumbnail)
+
+export const SquareThumbnail = memo(({ thumbnail, className = "" }) => {
     const containerStyle = {
         position: 'relative',
         backgroundImage: `url(${thumbnail})`,
@@ -46,7 +49,7 @@ export function SquareThumbnail({ thumbnail, className = "" }) {
             </div>
         </div>
     )
-}
+})
 
 function Dot() {
     return (

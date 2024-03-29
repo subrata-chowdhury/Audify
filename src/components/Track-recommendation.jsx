@@ -1,8 +1,9 @@
 import MusicThumbnail from "./Thumbnail"
 import "../Style/Track-recommendation.css"
 import { connect } from "react-redux";
+import { memo } from "react";
 
-const TrackRecommendation = ({ audioRef, setAudioSrc, setAudioName, setAudioArtist }) => {
+const TrackRecommendation = memo(({ audioRef, setAudioSrc, setAudioName, setAudioArtist }) => {
     return (
         <div className="track-recommendation-container">
             <div className="heading-font-size">Tracks selected for you</div>
@@ -11,11 +12,10 @@ const TrackRecommendation = ({ audioRef, setAudioSrc, setAudioName, setAudioArti
                 <Track trackName="Orange" trackDuration="6:50" audioRef={audioRef} audioSource="./Audio/Orange.mp3" setAudioSrc={setAudioSrc} setAudioName={setAudioName} setAudioArtist={setAudioArtist} />
                 <Track trackName="Rubia cover by APimon VA" trackDuration="6:50" audioRef={audioRef} audioSource="./Audio/Rubia cover by Paimon VA lyrics Honkai Impact OST.mp3" setAudioSrc={setAudioSrc} setAudioName={setAudioName} setAudioArtist={setAudioArtist} />
                 <Track trackName="Toradora! - Lost My Pieces" trackDuration="6:50" audioRef={audioRef} audioSource="./Audio/Toradora! - Lost My Pieces (OST).mp3" setAudioSrc={setAudioSrc} setAudioName={setAudioName} setAudioArtist={setAudioArtist} />
-
             </div>
         </div>
     )
-}
+})
 
 function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackDuration = "NaN", audioSource = "Not Defined", audioRef, setAudioSrc, setAudioName, setAudioArtist }) {
 
