@@ -49,19 +49,22 @@ function MusicDetails({ musicName = "Unknown", musicAuthor = "unknown" }) {
 const Controls = memo(({ audioRef }) => {
     const [playPauseIcon, setPlayPauseIcon] = useState("./Icons/Play.svg");
 
-    useEffect(() => {
+    function changeIcon() {
         if (audioRef.paused) setPlayPauseIcon("./Icons/Play.svg");
         else setPlayPauseIcon("./Icons/Pause.svg");
-    }, [audioRef.paused, audioRef])
+    }
+    useEffect(() => {
+        changeIcon()
+        audioRef.addEventListener('ended', changeIcon)
+    }, [audioRef])
 
     function playPauseBtnClickHandler() {
         if (audioRef.paused) {
             audioRef.play();
-            setPlayPauseIcon("./Icons/Pause.svg");
         } else {
             audioRef.pause();
-            setPlayPauseIcon("./Icons/Play.svg");
         }
+        changeIcon()
     }
 
     function forward(value) {

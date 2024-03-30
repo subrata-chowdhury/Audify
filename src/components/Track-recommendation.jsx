@@ -4,14 +4,41 @@ import { connect } from "react-redux";
 import { memo } from "react";
 
 const TrackRecommendation = memo(({ audioRef, setAudioSrc, setAudioName, setAudioArtist }) => {
+    const tracks = [{
+        name: "Hare Hare Ya",
+        duration: "3:26",
+        source: "./Audio/Hare Hare Ya.mp3"
+    }, {
+        name: "Orange",
+        duration: "6:50",
+        source: "./Audio/Orange.mp3"
+    }, {
+        name: "Rubia cover by APimon VA",
+        duration: "3:26",
+        source: "./Audio/Rubia cover by Paimon VA lyrics Honkai Impact OST.mp3"
+    }, {
+        name: "Toradora! - Lost My Pieces",
+        duration: "6:50",
+        source: "./Audio/Toradora! - Lost My Pieces (OST).mp3"
+    }]
+    let trackElements = []
+    for (let index = 0; index < tracks.length; index++) {
+        trackElements.push(
+            <Track trackName={tracks[index].name}
+                trackDuration={tracks[index].duration}
+                audioRef={audioRef}
+                audioSource={tracks[index].source}
+                setAudioSrc={setAudioSrc}
+                setAudioName={setAudioName}
+                setAudioArtist={setAudioArtist}
+                key={index} />
+        )
+    }
     return (
         <div className="track-recommendation-container">
             <div className="heading-font-size">Tracks selected for you</div>
             <div className="tracks-container">
-                <Track trackName="Hare Hare Ya" trackDuration="3:26" audioRef={audioRef} audioSource="./Audio/Hare Hare Ya.mp3" setAudioSrc={setAudioSrc} setAudioName={setAudioName} setAudioArtist={setAudioArtist} />
-                <Track trackName="Orange" trackDuration="6:50" audioRef={audioRef} audioSource="./Audio/Orange.mp3" setAudioSrc={setAudioSrc} setAudioName={setAudioName} setAudioArtist={setAudioArtist} />
-                <Track trackName="Rubia cover by APimon VA" trackDuration="6:50" audioRef={audioRef} audioSource="./Audio/Rubia cover by Paimon VA lyrics Honkai Impact OST.mp3" setAudioSrc={setAudioSrc} setAudioName={setAudioName} setAudioArtist={setAudioArtist} />
-                <Track trackName="Toradora! - Lost My Pieces" trackDuration="6:50" audioRef={audioRef} audioSource="./Audio/Toradora! - Lost My Pieces (OST).mp3" setAudioSrc={setAudioSrc} setAudioName={setAudioName} setAudioArtist={setAudioArtist} />
+                {trackElements}
             </div>
         </div>
     )
