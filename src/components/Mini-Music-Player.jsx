@@ -48,6 +48,7 @@ function MusicDetails({ musicName = "Unknown", musicAuthor = "unknown" }) {
 
 const Controls = memo(({ audioRef }) => {
     const [playPauseIcon, setPlayPauseIcon] = useState("./Icons/Play.svg");
+    const [repeat, setRepeat] = useState(false);
 
     function changeIcon() {
         if (audioRef.paused) setPlayPauseIcon("./Icons/Play.svg");
@@ -55,8 +56,13 @@ const Controls = memo(({ audioRef }) => {
     }
     useEffect(() => {
         changeIcon()
-        audioRef.addEventListener('ended', changeIcon)
     }, [audioRef])
+    useEffect(() => {
+        audioRef.addEventListener('ended', () => {
+            if (repeat) audioRef.play()
+            changeIcon()
+        })
+    }, [audioRef, repeat])
 
     function playPauseBtnClickHandler() {
         if (audioRef.paused) {
@@ -75,9 +81,21 @@ const Controls = memo(({ audioRef }) => {
         <div className="music-control-container">
             <ProgressBar audioRef={audioRef} />
             <div className="music-controls">
+                <img
+                    src={repeat ? "./Icons/arrow-repeat-all.svg" : "./Icons/arrow-repeat-all-off.svg"}
+                    alt=""
+                    className="music-control"
+                    style={{ width: "15px", height: '15px', position: "relative", top: "-1.5px" }}
+                    onClick={() => { setRepeat(val => !val) }} />
                 <img src="./Icons/fast-backward.svg" alt="" className="music-control" onClick={() => { forward(-10) }} />
                 <img src={playPauseIcon} alt="" className="music-control" onClick={playPauseBtnClickHandler} />
                 <img src="./Icons/fast-forward.svg" alt="" className="music-control" onClick={() => { forward(10) }} />
+                <img
+                    src={repeat ? "./Icons/arrow-repeat-all.svg" : "./Icons/arrow-repeat-all-off.svg"}
+                    alt=""
+                    className="music-control"
+                    style={{ width: "15px", height: '15px', position: "relative", top: "-1.5px" }}
+                    onClick={() => { setRepeat(val => !val) }} />
             </div>
         </div>
     )

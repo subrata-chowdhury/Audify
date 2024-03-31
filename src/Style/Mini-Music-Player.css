@@ -60,7 +60,7 @@
 
 .music-controls {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-auto-flow: column;
     justify-content: center;
     gap: 15px;
     position: relative;
