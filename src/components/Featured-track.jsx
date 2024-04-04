@@ -54,11 +54,11 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(FeaturedTrack)
 
 const MusicProgressBar = memo(({ audioFrequency }) => {
-
+    let frequencyLength = 70; 
     let bars = [];
     function calculateBars() {
         bars = []
-        for (var i = 0; i < 74; i++) {
+        for (var i = 0; i < frequencyLength; i++) {
             bars.push(<Bar h={((Math.random() * 100) + 5)} key={i} />)
         }
     }

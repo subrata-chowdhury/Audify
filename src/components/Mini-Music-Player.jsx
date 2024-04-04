@@ -1,6 +1,6 @@
 import "../Style/Mini-Music-Player.css"
 import MusicThumbnail from "./Thumbnail"
-import React, { memo, useCallback, useEffect, useState } from "react"
+import React, { memo, useCallback, useEffect, useRef, useState } from "react"
 import { connect } from 'react-redux';
 
 const MiniMusicPlayer = ({ audioRef, audioThumbnailSrc = "./Icons/Music-icon3.jpg", audioName = "Unknown", audioArtist = "unknown" }) => {
@@ -49,11 +49,8 @@ function MusicDetails({ musicName = "Unknown", musicAuthor = "unknown" }) {
 const Controls = memo(({ audioRef }) => {
     const [playPauseIcon, setPlayPauseIcon] = useState("./Icons/Play.svg");
     const [repeat, setRepeat] = useState(false);
+    const [volumeIcon, setVolumeIcon] = useState("./Icons/volume.svg")
 
-    function changeIcon() {
-        if (audioRef.paused) setPlayPauseIcon("./Icons/Play.svg");
-        else setPlayPauseIcon("./Icons/Pause.svg");
-    }
     useEffect(() => {
         changeIcon()
     }, [audioRef])
@@ -63,6 +60,11 @@ const Controls = memo(({ audioRef }) => {
             changeIcon()
         })
     }, [audioRef, repeat])
+
+    function changeIcon() {
+        if (audioRef.paused) setPlayPauseIcon("./Icons/Play.svg");
+        else setPlayPauseIcon("./Icons/Pause.svg");
+    }
 
     function playPauseBtnClickHandler() {
         if (audioRef.paused) {
@@ -76,28 +78,38 @@ const Controls = memo(({ audioRef }) => {
     function forward(value) {
         audioRef.currentTime += value;
     }
-
+    
     return (
-        <div className="music-control-container">
-            <ProgressBar audioRef={audioRef} />
-            <div className="music-controls">
-                <img
-                    src={repeat ? "./Icons/arrow-repeat-all.svg" : "./Icons/arrow-repeat-all-off.svg"}
-                    alt=""
-                    className="music-control"
-                    style={{ width: "15px", height: '15px', position: "relative", top: "-1.5px" }}
-                    onClick={() => { setRepeat(val => !val) }} />
-                <img src="./Icons/fast-backward.svg" alt="" className="music-control" onClick={() => { forward(-10) }} />
-                <img src={playPauseIcon} alt="" className="music-control" onClick={playPauseBtnClickHandler} />
-                <img src="./Icons/fast-forward.svg" alt="" className="music-control" onClick={() => { forward(10) }} />
-                <img
-                    src={repeat ? "./Icons/arrow-repeat-all.svg" : "./Icons/arrow-repeat-all-off.svg"}
-                    alt=""
-                    className="music-control"
-                    style={{ width: "15px", height: '15px', position: "relative", top: "-1.5px" }}
-                    onClick={() => { setRepeat(val => !val) }} />
+        <>
+            {/* <VolumeContainer audioRef={audioRef} /> */}
+            <div className="music-control-container">
+                <ProgressBar audioRef={audioRef} />
+                <div className="music-controls">
+                    <img
+                        src={volumeIcon}
+                        alt=""
+                        className="music-control"
+                        onClick={() => {
+                            if (audioRef.volume <= 0) {
+                                setVolumeIcon("./Icons/volume.svg")
+                                audioRef.volume = 1
+                            } else {
+                                setVolumeIcon("./Icons/volume-mute.svg")
+                                audioRef.volume = 0
+                            }
+                        }} />
+                    <img src="./Icons/fast-backward.svg" alt="" className="music-control" onClick={() => { forward(-10) }} />
+                    <img src={playPauseIcon} alt="" className="music-control" onClick={playPauseBtnClickHandler} />
+                    <img src="./Icons/fast-forward.svg" alt="" className="music-control" onClick={() => { forward(10) }} />
+                    <img
+                        src={repeat ? "./Icons/arrow-repeat-all.svg" : "./Icons/arrow-repeat-all-off.svg"}
+                        alt=""
+                        className="music-control"
+                        style={{ width: "15px", height: '15px', position: "relative", top: "-1.5px" }}
+                        onClick={() => { setRepeat(val => !val) }} />
+                </div>
             </div>
-        </div>
+        </>
     )
 })
 
@@ -136,3 +148,14 @@ const ProgressBar = memo(({ audioRef }) => {
         </div>
     )
 })
+
+// const VolumeContainer = memo(() => {
+//     return (
+//         <div className="volume-container">
+//             <div className="volume-bar">
+//                 <div className="inner-bar" style={{ height: (100 * volume) + '%' }}></div>
+//             </div>
+//             <img src="./Icons/volume.svg" className="volume-icon"></img>
+//         </div>
+//     )
+// })
