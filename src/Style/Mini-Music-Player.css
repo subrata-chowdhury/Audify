@@ -86,6 +86,7 @@
         transform: rotate(360deg);
     }
 }
+
 /* 
 .volume-container {
     width: 40px;
@@ -117,3 +118,12 @@
 .volume-bar .inner-bar {
     background: dodgerblue;
 } */
+
+
+
+@media (max-width: 800px) {
+    .mini-music-player {
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
+}

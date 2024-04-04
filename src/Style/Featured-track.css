@@ -45,6 +45,7 @@
     grid-template-columns: 30% auto;
     align-items: center;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    z-index: 2;
 }
 
 .current-music-details {
@@ -63,4 +64,22 @@
 
 .thumbnail-shadow.mini-thumbnail {
     filter: blur(8px);
+}
+
+@media (max-width: 1370px) {
+    .music-progress-bar-container .bar {
+        width: 4px;
+    }
+}
+
+@media (max-width: 1170px) {
+    .music-progress-bar-container .bar {
+        width: 3px;
+    }
+}
+
+@media (max-width: 990px) {
+    .music-progress-bar-container .bar {
+        width: 2px;
+    }
 }

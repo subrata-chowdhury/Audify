@@ -30,20 +30,40 @@ function App() {
 			<img className='bg' src={bg} alt='Background' />
 			<AddAudio />
 			<div className="app">
-				<div className='left-side'>
-					<ThreeDot />
-					<SearchBar />
-					<Menubar />
-					<Groups />
-					<MiniMusicPlayer thumbnail={thumbnail} trackName={"Way Back Home"} trackAuthor={"Unknown"} />
-				</div>
-				<div className='right-side'>
-					<FeaturedTrack thumbnail={thumbnail} trackName={"Way Back Home"} />
-					<FeaturedArtist />
-					<Recommendation />
-				</div>
+				<LeftSide />
+				<RightSide />
 			</div>
 		</Provider>
+	)
+}
+
+function LeftSide() {
+	return (
+		<div className='left-side'>
+			<Menus />
+			<MiniMusicPlayer thumbnail={thumbnail} trackName={"Way Back Home"} trackAuthor={"Unknown"} />
+		</div>
+	)
+}
+
+function RightSide() {
+	return (
+		<div className='right-side'>
+			<FeaturedTrack thumbnail={thumbnail} trackName={"Way Back Home"} />
+			<FeaturedArtist />
+			<Recommendation />
+		</div>
+	)
+}
+
+function Menus() {
+	return (
+		<div className='menus'>
+			<ThreeDot />
+			<SearchBar />
+			<Menubar />
+			<Groups />
+		</div>
 	)
 }
 
