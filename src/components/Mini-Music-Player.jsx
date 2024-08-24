@@ -121,7 +121,7 @@ const Controls = memo(() => {
                         }} />
                     <img src="./Icons/fast-backward.svg" alt="" className="music-control" onClick={() => { forward(-10) }} />
                     <img
-                        src={!isPlaying ? "./Icons/play.svg" : "./Icons/pause.svg"}
+                        src={!isPlaying ? "./Icons/Play.svg" : "./Icons/Pause.svg"}
                         alt=""
                         className="music-control"
                         onClick={playPauseBtnClickHandler} />
