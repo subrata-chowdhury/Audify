@@ -1,105 +1,135 @@
+import { useDispatch, useSelector } from "react-redux";
 import "../Style/Mini-Music-Player.css"
 import MusicThumbnail from "./Thumbnail"
 import React, { memo, useCallback, useEffect, useRef, useState } from "react"
-import { connect } from 'react-redux';
+import { setIsPlaying } from "./audioReducer"
 
-const MiniMusicPlayer = ({ audioRef, audioThumbnailSrc = "./Icons/Music-icon3.jpg", audioName = "Unknown", audioArtist = "unknown" }) => {
-
-    if (audioThumbnailSrc === "") audioThumbnailSrc = "./Icons/Music-icon3.jpg";
-    if (audioName === "") audioName = "Unknown";
-    if (audioArtist === "") audioArtist = "unknown";
+const MiniMusicPlayer = () => {
+    const audioThumbnailSrc = useSelector(state => state.audio.audioThumbnailSrc)
 
     return (
         <div className="mini-music-player">
             <MusicThumbnail thumbnail={audioThumbnailSrc} createDot={true} />
-            <MusicDetails musicName={audioName} musicAuthor={audioArtist} />
-            <Controls audioRef={audioRef} />
+            <MusicDetails />
+            <Controls />
         </div>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        audioRef: state.audioRef,
-        audioThumbnailSrc: state.audioThumbnailSrc,
-        audioName: state.audioName,
-        audioArtist: state.audioArtist,
-    };
-};
+export default MiniMusicPlayer
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MiniMusicPlayer)
-
-function MusicDetails({ musicName = "Unknown", musicAuthor = "unknown" }) {
-
-    if (musicName === "") musicName = "Unknown";
-    if (musicAuthor === "") musicAuthor = "unknown";
+const MusicDetails = memo(() => {
+    const audioName = useSelector(state => state.audio.audioName)
+    const audioArtist = useSelector(state => state.audio.audioArtist)
 
     return (
         <div className="music-details">
-            <div className="music-name">{musicName}</div>
-            <div className="music-author">{musicAuthor}</div>
+            <div className="music-name">{audioName}</div>
+            <div className="music-author">{audioArtist}</div>
         </div>
     )
-}
+})
 
-const Controls = memo(({ audioRef }) => {
-    const [playPauseIcon, setPlayPauseIcon] = useState("./Icons/Play.svg");
+const Controls = memo(() => {
+    const dispatch = useDispatch();
+    const audioSrc = useSelector(state => state.audio.audioSrc)
+    const isPlaying = useSelector(state => state.audio.isPlaying)
+
+    const audioRef = useRef(new Audio("./Audio/Way Back Home.mp3"))
+
     const [repeat, setRepeat] = useState(false);
     const [volumeIcon, setVolumeIcon] = useState("./Icons/volume.svg")
+    const [duration, setDuration] = useState(0)
+    const [currentTime, setCurrentTime] = useState(0)
 
     useEffect(() => {
-        changeIcon()
-    }, [audioRef])
+        audioRef.current.pause()
+        audioRef.current.src = null;
+        audioRef.current = new Audio(audioSrc)
+        audioRef.current.play()
+    }, [audioSrc])
+
     useEffect(() => {
-        audioRef.addEventListener('ended', () => {
-            if (repeat) audioRef.play()
-            changeIcon()
+        audioRef.current.addEventListener('ended', () => {
+            if (repeat) audioRef.current.play()
+            else dispatch(setIsPlaying(false))
         })
-    }, [audioRef, repeat])
+        audioRef.current.addEventListener('play', () => {
+            dispatch(setIsPlaying(true))
+        })
+        audioRef.current.addEventListener('pause', () => {
+            dispatch(setIsPlaying(false))
+        })
 
-    function changeIcon() {
-        if (audioRef.paused) setPlayPauseIcon("./Icons/Play.svg");
-        else setPlayPauseIcon("./Icons/Pause.svg");
-    }
+        audioRef.current.addEventListener('loadedmetadata', () => {
+            setDuration(audioRef.current.duration)
+        })
+        audioRef.current.addEventListener('timeupdate', () => {
+            setCurrentTime(audioRef.current.currentTime)
+        })
+
+        return () => {
+            audioRef.current.removeEventListener('ended', () => {
+                if (repeat) audioRef.current.play()
+            })
+            audioRef.current.removeEventListener('play', () => {
+                dispatch(setIsPlaying(true))
+            })
+            audioRef.current.removeEventListener('pause', () => {
+                dispatch(setIsPlaying(false))
+            })
+
+            audioRef.current.removeEventListener('metadata', () => {
+                setDuration(audioRef.current.duration)
+            })
+            audioRef.current.removeEventListener('timeupdate', () => {
+                setCurrentTime(audioRef.current.currentTime)
+            })
+        }
+    }, [audioRef.current, repeat])
 
     function playPauseBtnClickHandler() {
-        if (audioRef.paused) {
-            audioRef.play();
+        if (audioRef.current.paused) {
+            audioRef.current.play();
         } else {
-            audioRef.pause();
+            audioRef.current.pause();
         }
-        changeIcon()
     }
 
     function forward(value) {
-        audioRef.currentTime += value;
+        audioRef.current.currentTime += value;
     }
-    
+
     return (
         <>
             {/* <VolumeContainer audioRef={audioRef} /> */}
             <div className="music-control-container">
-                <ProgressBar audioRef={audioRef} />
+                <ProgressBar
+                    duration={duration}
+                    currentTime={currentTime}
+                    onSeek={(time) => {
+                        audioRef.current.currentTime = time
+                    }} />
                 <div className="music-controls">
                     <img
                         src={volumeIcon}
                         alt=""
                         className="music-control"
                         onClick={() => {
-                            if (audioRef.volume <= 0) {
+                            if (audioRef.current.volume <= 0) {
                                 setVolumeIcon("./Icons/volume.svg")
-                                audioRef.volume = 1
+                                audioRef.current.volume = 1
                             } else {
                                 setVolumeIcon("./Icons/volume-mute.svg")
-                                audioRef.volume = 0
+                                audioRef.current.volume = 0
                             }
                         }} />
                     <img src="./Icons/fast-backward.svg" alt="" className="music-control" onClick={() => { forward(-10) }} />
-                    <img src={playPauseIcon} alt="" className="music-control" onClick={playPauseBtnClickHandler} />
+                    <img
+                        src={!isPlaying ? "./Icons/play.svg" : "./Icons/pause.svg"}
+                        alt=""
+                        className="music-control"
+                        onClick={playPauseBtnClickHandler} />
                     <img src="./Icons/fast-forward.svg" alt="" className="music-control" onClick={() => { forward(10) }} />
                     <img
                         src={repeat ? "./Icons/arrow-repeat-all.svg" : "./Icons/arrow-repeat-all-off.svg"}
@@ -113,29 +143,17 @@ const Controls = memo(({ audioRef }) => {
     )
 })
 
-const ProgressBar = memo(({ audioRef }) => {
-    const [duration, setDuration] = useState(0);
-    const [currentTime, setCurrentTime] = useState(0);
-
-    useEffect(() => {
-        audioRef.addEventListener("loadedmetadata", () => {
-            setDuration(audioRef.duration)
-        })
-        audioRef.addEventListener("timeupdate", () => {
-            setCurrentTime(audioRef.currentTime)
-        })
-    }, [audioRef])
-
+const ProgressBar = memo(({ duration = 0, currentTime = 0, onSeek = () => { } }) => {
     const convertToMinutes = useCallback((duration) => {
-        let minutes = duration / 60;
-        let seconds = duration % 60;
+        let minutes = duration / 60 || 0;
+        let seconds = duration % 60 || 0;
         return `${minutes.toFixed(0)}:${seconds.toFixed(0)}`;
     }, [])
 
     function setCurrentTimeBasedOnCursorLocation(event) {
         const element = event.currentTarget;
         const relativeX = event.clientX - (element.getBoundingClientRect().left);
-        audioRef.currentTime = (Math.floor((relativeX / element.offsetWidth) * duration))
+        onSeek(Math.floor((relativeX / element.offsetWidth) * duration));
     }
 
     return (

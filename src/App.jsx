@@ -17,12 +17,9 @@ import FeaturedArtist from './components/Featured-artist'
 import Recommendation from './components/Recommendation'
 import AddAudio from './components/Add-audio'
 
-import { createStore } from 'redux';
-import AudioReducer from './components/AudioReducer';
+import store from './components/ReduxStore'
 import React from 'react';
 import { Provider } from 'react-redux';
-
-const store = createStore(AudioReducer);
 
 function App() {
 	return (
@@ -41,7 +38,7 @@ function LeftSide() {
 	return (
 		<div className='left-side'>
 			<Menus />
-			<MiniMusicPlayer thumbnail={thumbnail} trackName={"Way Back Home"} trackAuthor={"Unknown"} />
+			<MiniMusicPlayer />
 		</div>
 	)
 }
@@ -49,7 +46,7 @@ function LeftSide() {
 function RightSide() {
 	return (
 		<div className='right-side'>
-			<FeaturedTrack thumbnail={thumbnail} trackName={"Way Back Home"} />
+			<FeaturedTrack />
 			<FeaturedArtist />
 			<Recommendation />
 		</div>

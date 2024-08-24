@@ -1,22 +1,13 @@
 import MusicThumbnail from "./Thumbnail"
 import "../Style/Featured-track.css"
-import React, { memo, useEffect, useState } from "react";
-import { connect } from 'react-redux';
+import React, { memo } from "react";
+import { useSelector } from "react-redux";
 
-const FeaturedTrack = ({ audioRef, audioThumbnailSrc = "./Icons/Music-icon3.jpg", audioName = "Unknown", audioFrequency }) => {
-
-    if (audioThumbnailSrc === "") audioThumbnailSrc = "./Icons/Music-icon3.jpg";
-    if (audioName === "") audioName = "Unknown";
-
-    const [playPauseText, setPlayPauseText] = useState("Paused");
-    useEffect(() => {
-        audioRef.addEventListener("play", () => {
-            setPlayPauseText("Playing..");
-        })
-        audioRef.addEventListener("pause", () => {
-            setPlayPauseText("Paused");
-        })
-    }, [audioRef])
+const FeaturedTrack = () => {
+    const audioName = useSelector(state => state.audio.audioName)
+    const audioThumbnailSrc = useSelector(state => state.audio.audioThumbnailSrc)
+    const audioFrequency = useSelector(state => state.audio.audioFrequency)
+    const isPlaying = useSelector(state => state.audio.isPlaying)
 
     return (
         <div className="featured-track-container section">
@@ -26,10 +17,10 @@ const FeaturedTrack = ({ audioRef, audioThumbnailSrc = "./Icons/Music-icon3.jpg"
 
                 <div className="current-music">
                     <div className="current-music-thumbnail-container">
-                        <MusicThumbnail thumbnail={audioThumbnailSrc} className={"mini-thumbnail"} />
+                        <MusicThumbnail thumbnail={audioThumbnailSrc} className="mini-thumbnail" />
                     </div>
                     <div className="current-music-details">
-                        <div className="current-music-text">{playPauseText}</div>
+                        <div className="current-music-text">{isPlaying ? "Playing.." : "Paused"}</div>
                         <div className="current-music-name">{audioName}</div>
                     </div>
                 </div>
@@ -38,35 +29,20 @@ const FeaturedTrack = ({ audioRef, audioThumbnailSrc = "./Icons/Music-icon3.jpg"
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        audioRef: state.audioRef,
-        audioThumbnailSrc: state.audioThumbnailSrc,
-        audioName: state.audioName,
-        audioFrequency: state.audioFrequency,
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FeaturedTrack)
+export default FeaturedTrack
 
 const MusicProgressBar = memo(({ audioFrequency }) => {
-    let frequencyLength = 70; 
+    let frequencyLength = 70;
     let bars = [];
-    function calculateBars() {
-        bars = []
-        for (var i = 0; i < frequencyLength; i++) {
-            bars.push(<Bar h={((Math.random() * 100) + 5)} key={i} />)
-        }
+    for (var i = 0; i < frequencyLength; i++) {
+        bars.push(<Bar h={((Math.random() * 100) + 5)} key={i} />)
     }
-    calculateBars()
 
     return (
         <div className="music-progress-bar-container">
-            {bars}
+            {
+                frequencyLength > 0 ? bars : <div className="no-music-playing">No music playing</div>
+            }
         </div>
     )
 })

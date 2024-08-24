@@ -1,9 +1,12 @@
 import MusicThumbnail from "./Thumbnail"
 import "../Style/Track-recommendation.css"
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { memo } from "react";
+import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "./audioReducer";
 
-const TrackRecommendation = memo(({ audioRef, setAudioSrc, setAudioName, setAudioArtist }) => {
+const TrackRecommendation = memo(() => {
+    const dispatch = useDispatch();
+
     const tracks = [{
         name: "Hare Hare Ya",
         duration: "3:26",
@@ -21,51 +24,35 @@ const TrackRecommendation = memo(({ audioRef, setAudioSrc, setAudioName, setAudi
         duration: "6:50",
         source: "./Audio/Toradora! - Lost My Pieces (OST).mp3"
     }]
-    let trackElements = []
-    for (let index = 0; index < tracks.length; index++) {
-        trackElements.push(
-            <Track trackName={tracks[index].name}
-                trackDuration={tracks[index].duration}
-                audioRef={audioRef}
-                audioSource={tracks[index].source}
-                setAudioSrc={setAudioSrc}
-                setAudioName={setAudioName}
-                setAudioArtist={setAudioArtist}
-                key={index} />
-        )
-    }
+
     return (
         <div className="track-recommendation-container">
             <div className="heading-font-size">Tracks selected for you</div>
             <div className="tracks-container">
-                {trackElements}
+                {
+                    tracks.map((track) => {
+                        return (
+                            <Track
+                                trackName={track.name}
+                                trackDuration={track.duration}
+                                onClick={() => {
+                                    dispatch(setAudioSrc(track.source))
+                                    dispatch(setAudioName(track.name))
+                                    dispatch(setArtistName("unknown"))
+                                    dispatch(setAudioThumbnailSrc("./Icons/Music-icon3.jpg"))
+                                }}
+                                key={track.source} />
+                        )
+                    })
+                }
             </div>
         </div>
     )
 })
 
-function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackDuration = "NaN", audioSource = "Not Defined", audioRef, setAudioSrc, setAudioName, setAudioArtist }) {
-
-    if (thumbnail === "") thumbnail = "./Icons/Music-icon3.jpg";
-    if (audioSource === "") audioSource = "Not Defined";
-    if (trackName === "") trackName = "Unknown";
-    if (trackAuthor === "") trackAuthor = "unknown";
-    if (trackDuration === "") trackDuration = "NaN";
-
-    async function setAudioSrcToNull() {
-        audioRef.src = null;
-    }
-
-    async function setAudioSource() {
-        await audioRef.pause();
-        await setAudioSrcToNull();
-        await setAudioSrc(audioSource);
-        setAudioName(trackName);
-        setAudioArtist(trackAuthor);
-    }
-
+function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackDuration = "0:0", onClick = () => { } }) {
     return (
-        <div className="track-container normal-text-font-size" onClick={setAudioSource}>
+        <div className="track-container normal-text-font-size" onClick={onClick}>
             <MusicThumbnail thumbnail={thumbnail} className="mini-thumbnail" />
             <div className="track-name">{trackName}</div>
             <div className="track-author">{trackAuthor}</div>
@@ -74,20 +61,4 @@ function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", t
     )
 }
 
-
-
-const mapStateToProps = (state) => {
-    return {
-        audioRef: state.audioRef,
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setAudioSrc: (src) => dispatch({ type: 'SET_AUDIO_SRC', payload: src }), // Dispatch action to set audioRef
-        setAudioName: (name) => dispatch({ type: 'SET_AUDIO_NAME', payload: name }), // Dispatch action to set audioRef
-        setAudioArtist: (artist) => dispatch({ type: 'SET_ARTIST_NAME', payload: artist }), // Dispatch action to set audioRef
-        // Add other action creators as needed
-    };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(TrackRecommendation);
+export default TrackRecommendation;
