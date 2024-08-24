@@ -51,8 +51,13 @@ const Controls = memo(() => {
 
     useEffect(() => {
         audioRef.current.addEventListener('ended', () => {
-            if (repeat) audioRef.current.play()
-            else dispatch(setIsPlaying(false))
+            if (repeat) {
+                audioRef.current.play()
+                dispatch(setIsPlaying(true))
+            } else {
+                audioRef.current.pause()
+                dispatch(setIsPlaying(false))
+            }
         })
         audioRef.current.addEventListener('play', () => {
             dispatch(setIsPlaying(true))
@@ -69,24 +74,14 @@ const Controls = memo(() => {
         })
 
         return () => {
-            audioRef.current.removeEventListener('ended', () => {
-                if (repeat) audioRef.current.play()
-            })
-            audioRef.current.removeEventListener('play', () => {
-                dispatch(setIsPlaying(true))
-            })
-            audioRef.current.removeEventListener('pause', () => {
-                dispatch(setIsPlaying(false))
-            })
+            audioRef.current.removeEventListener('ended', () => { })
+            audioRef.current.removeEventListener('play', () => { })
+            audioRef.current.removeEventListener('pause', () => { })
 
-            audioRef.current.removeEventListener('metadata', () => {
-                setDuration(audioRef.current.duration)
-            })
-            audioRef.current.removeEventListener('timeupdate', () => {
-                setCurrentTime(audioRef.current.currentTime)
-            })
+            audioRef.current.removeEventListener('metadata', () => { })
+            audioRef.current.removeEventListener('timeupdate', () => { })
         }
-    }, [audioRef.current, repeat])
+    }, [audioSrc, audioRef.current, repeat])
 
     function playPauseBtnClickHandler() {
         if (audioRef.current.paused) {
