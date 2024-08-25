@@ -1,36 +1,20 @@
 import MusicThumbnail from "./Thumbnail"
 import "../Style/Track-recommendation.css"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
 import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "./audioReducer";
+import { defaultTracks } from "./Data";
 
-const TrackRecommendation = memo(() => {
+const TrackRecommendation = memo(({ albumName = "default" }) => {
     const dispatch = useDispatch();
-
-    const tracks = [{
-        name: "Hare Hare Ya",
-        duration: "3:26",
-        source: "./Audio/Hare Hare Ya.mp3"
-    }, {
-        name: "Orange",
-        duration: "6:50",
-        source: "./Audio/Orange.mp3"
-    }, {
-        name: "Rubia cover by APimon VA",
-        duration: "3:26",
-        source: "./Audio/Rubia cover by Paimon VA lyrics Honkai Impact OST.mp3"
-    }, {
-        name: "Toradora! - Lost My Pieces",
-        duration: "6:50",
-        source: "./Audio/Toradora! - Lost My Pieces (OST).mp3"
-    }]
+    const audioName = useSelector(state => state.audio.audioName);
 
     return (
         <div className="track-recommendation-container">
             <div className="heading-font-size">Tracks selected for you</div>
             <div className="tracks-container">
                 {
-                    tracks.map((track) => {
+                    defaultTracks[albumName] || defaultTracks[albumName].length > 0 ? defaultTracks[albumName].filter(item => item.name !== audioName).map((track) => {
                         return (
                             <Track
                                 trackName={track.name}
@@ -43,7 +27,7 @@ const TrackRecommendation = memo(() => {
                                 }}
                                 key={track.source} />
                         )
-                    })
+                    }) : <div>No tracks available</div>
                 }
             </div>
         </div>
@@ -54,8 +38,8 @@ function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", t
     return (
         <div className="track-container normal-text-font-size" onClick={onClick}>
             <MusicThumbnail thumbnail={thumbnail} className="mini-thumbnail" />
-            <div className="track-name">{trackName}</div>
-            <div className="track-author">{trackAuthor}</div>
+            <div className="track-name" title={trackName}>{trackName.length > 25 ? trackName.slice(0, 25) + ".." : trackName}</div>
+            <div className="track-author" title={trackAuthor}>{trackAuthor.length > 7 ? trackAuthor.slice(0, 7) + ".." : trackAuthor}</div>
             <div className="album-track-time">{trackDuration}</div>
         </div>
     )

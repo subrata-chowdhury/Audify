@@ -1,7 +1,6 @@
 .menubar {
     width: 100%;
-    position: relative;
-    top: 20px;
+    margin-top: 2rem;
 }
 
 .menu {

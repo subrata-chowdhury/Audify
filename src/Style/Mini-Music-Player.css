@@ -1,7 +1,6 @@
 .mini-music-player {
     width: 100%;
-    position: relative;
-    top: 4.2rem;
+    margin-top: 1.6rem;
     display: grid;
     justify-content: center;
 }
@@ -123,6 +122,8 @@
 
 @media (max-width: 800px) {
     .mini-music-player {
+        position: absolute;
+        margin: 0;
         top: 50%;
         transform: translate(0%, -50%);
     }

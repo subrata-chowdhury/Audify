@@ -10,7 +10,7 @@ const FeaturedTrack = () => {
     const isPlaying = useSelector(state => state.audio.isPlaying)
 
     return (
-        <div className="featured-track-container section">
+        <div className="featured-track-container">
             <div className="heading-font-size">Featured Track</div>
             <div className="music-details-container">
                 <MusicProgressBar audioFrequency={audioFrequency} />
@@ -21,7 +21,7 @@ const FeaturedTrack = () => {
                     </div>
                     <div className="current-music-details">
                         <div className="current-music-text">{isPlaying ? "Playing.." : "Paused"}</div>
-                        <div className="current-music-name">{audioName}</div>
+                        <div className="current-music-name">{audioName.length > 14 ? audioName.slice(0, 11) + ".." : audioName}</div>
                     </div>
                 </div>
             </div>

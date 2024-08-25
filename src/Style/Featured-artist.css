@@ -1,7 +1,3 @@
-.featured-artist-container {
-    height: 20%;
-}
-
 .artists-container {
     display: grid;
     grid-auto-flow: column;

@@ -1,8 +1,7 @@
 .album-container {
     display: grid;
     grid-template-columns: 48% 48%;
-    position: relative;
-    top: 13px;
+    margin-top: 1rem;
     gap: 4%;
 }
 
@@ -12,6 +11,9 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
     padding: 13%;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .album-track-container {
@@ -30,6 +32,7 @@
 
 .album-name {
     font-weight: bold;
+    text-align: center;
 }
 
 .album-track-author {

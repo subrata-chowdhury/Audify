@@ -19,7 +19,6 @@ const audioReducer = createSlice({
         },
         setAudioName: (state, action) => {
             let name = action.payload;
-            if (name.length > 14) name = name.slice(0, 11) + "..";
             state.audioName = name;
         },
         setArtistName: (state, action) => {

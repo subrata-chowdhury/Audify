@@ -24,7 +24,7 @@ const MusicDetails = memo(() => {
 
     return (
         <div className="music-details">
-            <div className="music-name">{audioName}</div>
+            <div className="music-name">{audioName.length > 14 ? audioName.slice(0, 11) + ".." : audioName}</div>
             <div className="music-author">{audioArtist}</div>
         </div>
     )
@@ -140,9 +140,9 @@ const Controls = memo(() => {
 
 const ProgressBar = memo(({ duration = 0, currentTime = 0, onSeek = () => { } }) => {
     const convertToMinutes = useCallback((duration) => {
-        let minutes = duration / 60 || 0;
-        let seconds = duration % 60 || 0;
-        return `${minutes.toFixed(0)}:${seconds.toFixed(0)}`;
+        let minutes = Math.floor(duration / 60) || 0;
+        let seconds = Math.floor(duration % 60) || 0;
+        return `${minutes}:${seconds}`;
     }, [])
 
     function setCurrentTimeBasedOnCursorLocation(event) {
