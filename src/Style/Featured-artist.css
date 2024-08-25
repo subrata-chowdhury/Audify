@@ -3,8 +3,8 @@
     grid-auto-flow: column;
     gap: 10px;
     height: 55%;
-    position: relative;
-    top: 13px;
+    margin-top: 1rem;
+    overflow-x: auto;
 }
 
 .artist {
@@ -16,4 +16,10 @@
     grid-template-columns: auto auto;
     align-items: center;
     cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .featured-artist-container {
+        display: none;
+    }
 }

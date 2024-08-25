@@ -3,3 +3,11 @@
     grid-template-columns: 57% 40%;
     gap: 3%;
 }
+
+
+@media (max-width: 800px) {
+    .recommendation-container {
+        grid-template-columns: none;
+        grid-template-rows: auto auto;
+    }
+}

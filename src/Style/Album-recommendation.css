@@ -43,3 +43,22 @@
     font-size: 12px;
     color: rgba(0, 0, 0, 0.6);
 }
+
+
+@media (max-width: 800px) {
+    .album-recommendation-container {
+        margin-top: 1rem;
+    }
+
+    .album {
+        padding: 1rem;
+    }
+
+    .album-container .thumbnail-container {
+        display: none;
+    }
+
+    .album-container .album-track-container {
+        display: none;
+    }
+}

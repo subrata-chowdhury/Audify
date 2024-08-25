@@ -80,3 +80,10 @@
         width: 3px;
     }
 }
+
+@media (max-width: 800px) {
+    .featured-track-container {
+        display: none;
+    }
+
+}

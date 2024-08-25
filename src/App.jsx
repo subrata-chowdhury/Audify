@@ -1,6 +1,5 @@
 import './App.css'
 
-import thumbnail from "./Assets/FRESHERBRINE.jpeg"
 import bg from "./Assets/1080439.png"
 
 import './Style/left-side.css'

@@ -9,6 +9,7 @@
 
 @media (max-width: 800px) {
     .right-side {
-        display: none;
+        grid-template-rows: none;
+        /* display: none; */
     }
 }

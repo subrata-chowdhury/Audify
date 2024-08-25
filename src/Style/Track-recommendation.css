@@ -6,26 +6,15 @@
     overflow-y: auto;
     max-height: 35vh;
     padding-right: 0.2rem;
-}
-
-::-webkit-scrollbar {
-    width: 0.3rem;
-    background-color: #f5f5f5;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #8888886f;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #5555558e;
+    box-sizing: border-box;
 }
 
 .track-container {
     width: 100%;
-    display: grid;
-    grid-template-columns: 3rem 40% 15% 8%;
+    box-sizing: border-box;
+    display: flex;
+    padding-left: 0.3rem;
+    padding-right: 1rem;
     align-items: center;
     justify-content: space-evenly;
     height: 3rem;
@@ -34,6 +23,10 @@
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
     cursor: pointer;
+}
+
+.track-container .track-author {
+    margin-right: 0.5rem;
 }
 
 @media (max-width: 1024px) {

@@ -17,7 +17,7 @@ function AlbumRecommendation({ openedAlbum = "Favourite", onClick = () => { } })
     const albumNames = defaultAlbumNames.filter(item => item.name !== openedAlbum)
 
     return (
-        <div className="Album-recommendation-container">
+        <div className="album-recommendation-container">
             <div className="heading-font-size">Album & sets selected for you</div>
             <div className="album-container">
                 {
@@ -55,7 +55,6 @@ function Album({
     trackAuthor,
     onClick = () => { }
 }) {
-
     if (thumbnail === "") thumbnail = "./Icons/Music-icon3.jpg";
     if (albumName === "") albumName = "Unknown";
     if (albumTrackCount === "") albumTrackCount = "NaN";

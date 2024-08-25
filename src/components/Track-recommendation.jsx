@@ -7,14 +7,14 @@ import { defaultTracks } from "./Data";
 
 const TrackRecommendation = memo(({ albumName = "default" }) => {
     const dispatch = useDispatch();
-    const audioName = useSelector(state => state.audio.audioName);
+    const audioSrc = useSelector(state => state.audio.audioSrc);
 
     return (
         <div className="track-recommendation-container">
             <div className="heading-font-size">Tracks selected for you</div>
             <div className="tracks-container">
                 {
-                    defaultTracks[albumName] || defaultTracks[albumName].length > 0 ? defaultTracks[albumName].filter(item => item.name !== audioName).map((track) => {
+                    (defaultTracks[albumName] || defaultTracks[albumName].length > 0) ? defaultTracks[albumName].filter(item => item.source !== audioSrc).map((track) => {
                         return (
                             <Track
                                 trackName={track.name}
@@ -37,8 +37,10 @@ const TrackRecommendation = memo(({ albumName = "default" }) => {
 function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackDuration = "0:0", onClick = () => { } }) {
     return (
         <div className="track-container normal-text-font-size" onClick={onClick}>
-            <MusicThumbnail thumbnail={thumbnail} className="mini-thumbnail" />
-            <div className="track-name" title={trackName}>{trackName.length > 25 ? trackName.slice(0, 25) + ".." : trackName}</div>
+            <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', gap: '0.3rem' }}>
+                <MusicThumbnail thumbnail={thumbnail} className="mini-thumbnail" />
+                <div className="track-name" title={trackName}>{trackName.length > 25 ? trackName.slice(0, 25) + ".." : trackName}</div>
+            </div>
             <div className="track-author" title={trackAuthor}>{trackAuthor.length > 7 ? trackAuthor.slice(0, 7) + ".." : trackAuthor}</div>
             <div className="album-track-time">{trackDuration}</div>
         </div>
