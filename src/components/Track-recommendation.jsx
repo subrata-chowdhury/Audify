@@ -34,7 +34,7 @@ const TrackRecommendation = memo(({ albumName = "default" }) => {
     )
 })
 
-function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackDuration = "0:0", onClick = () => { } }) {
+export function Track({ thumbnail = "./Icons/Music-icon3.jpg", trackName = "Unknown", trackAuthor = "unknown", trackDuration = "0:0", onClick = () => { } }) {
     return (
         <div className="track-container normal-text-font-size" onClick={onClick}>
             <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', gap: '0.3rem' }}>

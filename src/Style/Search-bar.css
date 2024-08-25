@@ -1,23 +1,24 @@
 .search-bar-container {
     background: dodgerblue;
     padding: 7px 10px;
-    display: grid;
-    grid-template-columns: 15px auto;
+    display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 80%;
+    box-sizing: border-box;
+    width: 100%;
     gap: 10px;
-    position: relative;
-    left: 5%;
-    top: 15px;
+    margin-top: 0.5rem;
+    justify-self: center;
     border-radius: 5px;
 }
 
 .music-icon {
-    width: 100%;
+    width: 15px;
+    height: 15px;
 }
 
 .search-music-input {
+    flex-grow: 1;
     width: 95%;
     outline: none;
     border: none;
@@ -27,4 +28,25 @@
 
 .search-music-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
+}
+
+.search-result-container {
+    position: absolute;
+    top: 4rem;
+    left: 5%;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+
+@media (max-width: 800px) {
+    .search-result-container {
+        top: 3rem;
+    }
 }

@@ -5,3 +5,10 @@
 .heading {
     padding-left: 2rem;
 }
+
+
+@media (max-width: 800px) {
+    .group-container {
+        display: none;
+    }
+}
