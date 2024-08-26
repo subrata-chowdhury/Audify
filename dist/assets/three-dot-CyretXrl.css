@@ -1,0 +1,1 @@
+.dot-container{display:grid;grid-template-columns:auto auto auto;justify-content:start;gap:5px}.dot{height:10px;width:10px;border-radius:50%}.red{background:#ff8c00}.yellow{background:#ff0}.green{background:#90ee90}.white{background:#ffffff80}@media (max-width: 800px){.dot-container{display:none}}

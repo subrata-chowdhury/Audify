@@ -16,6 +16,7 @@
 
 .music-details .music-name {
     font-weight: bold;
+    text-align: center;
 }
 
 .music-details .music-author {

@@ -1,0 +1,1 @@
+.add-audio{position:fixed;left:25px;bottom:25px;padding:15px;border-radius:5px;background:#ffffffe6;display:grid;justify-content:center;align-items:center;cursor:pointer;z-index:5}.add-audio img{width:20px;height:20px}.audioInput{display:none}@media (max-width: 800px){.add-audio{z-index:2;background:#ffffffb3;bottom:auto;top:3.5rem;left:1rem}}

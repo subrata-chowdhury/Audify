@@ -1,0 +1,1 @@
+.menubar{width:100%;margin-top:1rem}.menus{margin:.7rem}.menu{display:grid;grid-template-columns:18px auto;width:100%;gap:10px;padding-left:2rem;align-items:center;margin-top:15px;cursor:pointer}.icon{width:100%}@media (max-width: 800px){.menubar{display:none}}
