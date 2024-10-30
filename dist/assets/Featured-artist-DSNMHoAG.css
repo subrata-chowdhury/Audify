@@ -1,1 +1,0 @@
-.artists-container{display:grid;grid-auto-flow:column;gap:10px;height:55%;margin-top:1rem;overflow-x:auto}.artist{background:#fff;border-radius:10px;height:100%;box-shadow:0 0 15px #0000000d;display:grid;grid-template-columns:auto auto;align-items:center;cursor:pointer}@media (max-width: 800px){.featured-artist-container{display:none}}
