@@ -1,6 +1,6 @@
 import './App.css'
 
-import bg from "./Assets/1080439.png"
+import bg from "./Assets/1080439.webp"
 import './Style/left-side.css'
 import './Style/right-side.css'
 
