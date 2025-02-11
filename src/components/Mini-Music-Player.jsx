@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../Style/Mini-Music-Player.css"
 import MusicThumbnail from "./Thumbnail"
 import React, { memo, useCallback, useEffect, useRef, useState } from "react"
-import { setIsPlaying } from "./audioReducer"
+import { setIsPlaying } from "../lib/audioReducer"
 
 const MiniMusicPlayer = () => {
     const audioThumbnailSrc = useSelector(state => state.audio.audioThumbnailSrc)

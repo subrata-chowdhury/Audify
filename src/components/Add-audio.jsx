@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import "../Style/add-audio.css";
 import { useDispatch } from 'react-redux';
-import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "./audioReducer";
+import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "../lib/audioReducer";
 
 const AddAudio = () => {
     const audioInput = useRef()

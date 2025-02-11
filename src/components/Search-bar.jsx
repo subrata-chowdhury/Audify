@@ -1,9 +1,9 @@
 import { useState } from "react"
 import "../Style/Search-bar.css"
 import { Track } from "./Track-recommendation"
-import { defaultTracks } from "./Data"
+import { defaultTracks } from "../lib/Data"
 import { useDispatch } from "react-redux"
-import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "./audioReducer"
+import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "../lib/audioReducer"
 
 const tracks = []
 for (let key in defaultTracks) {

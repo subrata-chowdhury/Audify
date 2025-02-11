@@ -2,8 +2,8 @@ import MusicThumbnail from "./Thumbnail"
 import "../Style/Track-recommendation.css"
 import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
-import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "./audioReducer";
-import { defaultTracks } from "./Data";
+import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "../lib/audioReducer";
+import { defaultTracks } from "../lib/Data";
 
 const TrackRecommendation = memo(({ albumName = "default" }) => {
     const dispatch = useDispatch();

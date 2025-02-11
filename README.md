@@ -1,5 +1,7 @@
-# A Music Player
-It's a simple music player UI created using ReactJS and redux. It is the version 2 of my previous music player which is available [here](https://github.com/Super7000/My-Second-UI)
+# Audify
+
+It's a customizable music player with astounding UI created using ReactJS and redux. It is the version 2 of my previous music player which is available [here](https://github.com/Super7000/My-Second-UI)
+
 <h3>Here are some pictures which will help you to understand the code modules.</h3>
 
 ![Screenshot 2024-03-01 085630-min](https://github.com/Super7000/A-Music-Player/assets/86580414/8206d7a6-1616-4c67-8c2c-2a549b42738b)
@@ -18,8 +20,6 @@ It's a simple music player UI created using ReactJS and redux. It is the version
 </table>
 
 ![Screenshot 2024-03-01 105720-min](https://github.com/Super7000/A-Music-Player/assets/86580414/4a520cd4-d50d-45e3-b51b-3efb9173889b)
-
-
 
 # React + Vite
 

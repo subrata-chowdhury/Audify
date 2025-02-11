@@ -18,7 +18,7 @@ const FeaturedArtist = React.lazy(() => import('./components/Featured-artist'));
 const Recommendation = React.lazy(() => import('./components/Recommendation'));
 const AddAudio = React.lazy(() => import('./components/Add-audio'));
 
-import store from './components/ReduxStore';
+import store from './lib/ReduxStore';
 import Loader from './components/Loader';
 
 function App() {

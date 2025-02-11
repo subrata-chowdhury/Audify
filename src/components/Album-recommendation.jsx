@@ -1,9 +1,9 @@
 import MusicThumbnail, { SquareThumbnail } from "./Thumbnail"
 import "../Style/Album-recommendation.css"
 import { memo } from "react";
-import { defaultTracks } from "./Data";
+import { defaultTracks } from "../lib/Data";
 import { useDispatch } from "react-redux";
-import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "./audioReducer";
+import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "../lib/audioReducer";
 // import thumbnail from "../Assets/FRESHERBRINE.jpeg"
 
 const defaultAlbumNames = [
