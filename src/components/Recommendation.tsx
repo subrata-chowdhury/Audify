@@ -1,7 +1,7 @@
 import TrackRecommendation from "./Track-recommendation";
 import AlbumRecommendation from "./Album-recommendation";
 
-import "../Style/Recommendation.css"
+import "../styles/Recommendation.css"
 import { useState } from "react";
 
 export default function Recommendation() {

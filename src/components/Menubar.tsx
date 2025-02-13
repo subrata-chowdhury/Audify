@@ -1,5 +1,5 @@
 import { memo } from "react"
-import "../Style/Menubar.css"
+import "../styles/Menubar.css"
 
 function Menubar() {
     return (
@@ -16,7 +16,12 @@ function Menubar() {
 
 export default memo(Menubar)
 
-export function Menu({ img, menuName }) {
+interface MenuProps {
+    img: string;
+    menuName: string;
+}
+
+export function Menu({ img, menuName }: MenuProps) {
     return (
         <div className="menu normal-text-font-size">
             <img src={img} alt={menuName} className="icon" />

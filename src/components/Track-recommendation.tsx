@@ -1,20 +1,23 @@
 import MusicThumbnail from "./Thumbnail"
-import "../Style/Track-recommendation.css"
-import { useDispatch, useSelector } from "react-redux";
+import "../styles/Track-recommendation.css"
+import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import { memo } from "react";
 import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "../lib/audioReducer";
 import { defaultTracks } from "../lib/Data";
+import { RootState } from "../lib/ReduxStore";
 
-const TrackRecommendation = memo(({ albumName = "default" }) => {
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+const TrackRecommendation = memo(({ albumName = "default" }: { albumName: string }) => {
     const dispatch = useDispatch();
-    const audioSrc = useSelector(state => state.audio.audioSrc);
+    const audioSrc = useTypedSelector(state => state.audio.audioSrc);
 
     return (
         <div className="track-recommendation-container">
             <div className="heading-font-size">Tracks selected for you</div>
             <div className="tracks-container">
                 {
-                    (defaultTracks[albumName] || defaultTracks[albumName].length > 0) ? defaultTracks[albumName].filter(item => item.source !== audioSrc).map((track) => {
+                    (defaultTracks[albumName] && defaultTracks[albumName].length > 0) ? defaultTracks[albumName].filter(item => item.source !== audioSrc).map((track) => {
                         return (
                             <Track
                                 trackName={track.name}

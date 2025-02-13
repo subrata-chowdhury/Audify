@@ -1,11 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import "../Style/Mini-Music-Player.css"
+import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
+import "../styles/Mini-Music-Player.css"
 import MusicThumbnail from "./Thumbnail"
 import React, { memo, useCallback, useEffect, useRef, useState } from "react"
 import { setIsPlaying } from "../lib/audioReducer"
+import { RootState } from "../lib/ReduxStore";
+
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const MiniMusicPlayer = () => {
-    const audioThumbnailSrc = useSelector(state => state.audio.audioThumbnailSrc)
+    const audioThumbnailSrc = useTypedSelector(state => state.audio.audioThumbnailSrc)
 
     return (
         <div className="mini-music-player">
@@ -19,8 +22,8 @@ const MiniMusicPlayer = () => {
 export default MiniMusicPlayer
 
 const MusicDetails = memo(() => {
-    const audioName = useSelector(state => state.audio.audioName)
-    const audioArtist = useSelector(state => state.audio.audioArtist)
+    const audioName = useTypedSelector(state => state.audio.audioName)
+    const audioArtist = useTypedSelector(state => state.audio.audioArtist)
 
     return (
         <div className="music-details">
@@ -32,8 +35,8 @@ const MusicDetails = memo(() => {
 
 const Controls = memo(() => {
     const dispatch = useDispatch();
-    const audioSrc = useSelector(state => state.audio.audioSrc)
-    const isPlaying = useSelector(state => state.audio.isPlaying)
+    const audioSrc = useTypedSelector(state => state.audio.audioSrc)
+    const isPlaying = useTypedSelector(state => state.audio.isPlaying)
 
     const audioRef = useRef(new Audio("./Audio/Way Back Home.mp3"))
 
@@ -44,7 +47,7 @@ const Controls = memo(() => {
 
     useEffect(() => {
         audioRef.current.pause()
-        audioRef.current.src = null;
+        audioRef.current.src = "";
         audioRef.current = new Audio(audioSrc)
         audioRef.current.play()
     }, [audioSrc])
@@ -91,7 +94,7 @@ const Controls = memo(() => {
         }
     }
 
-    function forward(value) {
+    function forward(value: number) {
         audioRef.current.currentTime += value;
     }
 
@@ -138,14 +141,20 @@ const Controls = memo(() => {
     )
 })
 
-const ProgressBar = memo(({ duration = 0, currentTime = 0, onSeek = () => { } }) => {
-    const convertToMinutes = useCallback((duration) => {
+interface ProgressBarProps {
+    duration: number;
+    currentTime: number;
+    onSeek: (time: number) => void;
+}
+
+const ProgressBar = memo(({ duration = 0, currentTime = 0, onSeek = () => { } }: ProgressBarProps) => {
+    const convertToMinutes = useCallback((duration: number) => {
         let minutes = Math.floor(duration / 60) || 0;
         let seconds = Math.floor(duration % 60) || 0;
         return `${minutes}:${seconds}`;
     }, [])
 
-    function setCurrentTimeBasedOnCursorLocation(event) {
+    function setCurrentTimeBasedOnCursorLocation(event: React.MouseEvent<HTMLDivElement>) {
         const element = event.currentTarget;
         const relativeX = event.clientX - (element.getBoundingClientRect().left);
         onSeek(Math.floor((relativeX / element.offsetWidth) * duration));

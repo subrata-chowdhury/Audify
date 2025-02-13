@@ -1,13 +1,16 @@
 import MusicThumbnail from "./Thumbnail"
-import "../Style/Featured-track.css"
-import React, { memo } from "react";
-import { useSelector } from "react-redux";
+import "../styles/Featured-track.css"
+import { memo } from "react";
+import { useSelector, TypedUseSelectorHook } from "react-redux";
+import { RootState } from "../lib/ReduxStore";
+
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const FeaturedTrack = () => {
-    const audioName = useSelector(state => state.audio.audioName)
-    const audioThumbnailSrc = useSelector(state => state.audio.audioThumbnailSrc)
-    const audioFrequency = useSelector(state => state.audio.audioFrequency)
-    const isPlaying = useSelector(state => state.audio.isPlaying)
+    const audioName = useTypedSelector(state => state.audio.audioName)
+    const audioThumbnailSrc = useTypedSelector(state => state.audio.audioThumbnailSrc)
+    const audioFrequency = useTypedSelector(state => state.audio.audioFrequency)
+    const isPlaying = useTypedSelector(state => state.audio.isPlaying)
 
     return (
         <div className="featured-track-container">
@@ -31,7 +34,12 @@ const FeaturedTrack = () => {
 
 export default FeaturedTrack
 
-const MusicProgressBar = memo(({ audioFrequency }) => {
+interface MusicProgressBarProps {
+    audioFrequency: number[];
+}
+
+// @ts-expect-error audioFrequency' is declared but its value is never read.
+const MusicProgressBar = memo(({ audioFrequency }: MusicProgressBarProps) => {
     let frequencyLength = 70;
     let bars = [];
     for (var i = 0; i < frequencyLength; i++) {
@@ -47,7 +55,7 @@ const MusicProgressBar = memo(({ audioFrequency }) => {
     )
 })
 
-function Bar({ h }) {
+function Bar({ h }: { h: number }) {
     return (
         <div className="bar">
             <div className="inner-bar" style={{ height: `${h}%`, top: `${100 - h}%` }}></div>

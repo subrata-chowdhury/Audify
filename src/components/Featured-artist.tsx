@@ -1,4 +1,4 @@
-import "../Style/Featured-artist.css"
+import "../styles/Featured-artist.css"
 import { SquareThumbnail } from "./Thumbnail"
 
 export default function FeaturedArtist() {

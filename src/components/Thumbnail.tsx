@@ -1,16 +1,22 @@
 
 import { memo } from "react";
-import "../Style/Thumbnail.css"
+import "../styles/Thumbnail.css"
 
-function MusicThumbnail({ thumbnail, className = "", createDot = false }) {
-    const containerStyle = {
+interface MusicThumbnailProps {
+    thumbnail: string;
+    className?: string;
+    createDot?: boolean;
+}
+
+function MusicThumbnail({ thumbnail, className = "", createDot = false }: MusicThumbnailProps) {
+    const containerStyle: React.CSSProperties = {
         position: 'relative',
         backgroundImage: `url(${thumbnail})`,
     };
-    const spanStyle = {
+    const spanStyle: React.CSSProperties = {
         content: `url(${thumbnail})`,
     };
-    const commonStyle = {
+    const commonStyle: React.CSSProperties = {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     };
@@ -28,8 +34,13 @@ function MusicThumbnail({ thumbnail, className = "", createDot = false }) {
 
 export default memo(MusicThumbnail)
 
-export const SquareThumbnail = memo(({ thumbnail, className = "" }) => {
-    const containerStyle = {
+interface SquareThumbnailProps {
+    thumbnail: string;
+    className?: string;
+}
+
+export const SquareThumbnail = memo(({ thumbnail, className = "" }: SquareThumbnailProps) => {
+    const containerStyle: React.CSSProperties = {
         position: 'relative',
         backgroundImage: `url(${thumbnail})`,
     };

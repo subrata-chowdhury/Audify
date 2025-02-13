@@ -1,11 +1,11 @@
 import { useState } from "react"
-import "../Style/Search-bar.css"
+import "../styles/Search-bar.css"
 import { Track } from "./Track-recommendation"
 import { defaultTracks } from "../lib/Data"
 import { useDispatch } from "react-redux"
 import { setArtistName, setAudioName, setAudioSrc, setAudioThumbnailSrc } from "../lib/audioReducer"
 
-const tracks = []
+const tracks: { name: string, duration: string, source: string }[] = []
 for (let key in defaultTracks) {
     tracks.push(...defaultTracks[key])
 }
@@ -13,7 +13,7 @@ for (let key in defaultTracks) {
 export default function SearchBar() {
     const dispatch = useDispatch()
     const [searchValue, setSearchValue] = useState("")
-    const [searchResult, setSearchResult] = useState([])
+    const [searchResult, setSearchResult] = useState<{ name: string, duration: string, source: string }[]>([])
 
     return (
         <>
@@ -21,7 +21,7 @@ export default function SearchBar() {
                 <img src="./Icons/music.svg" alt="music" className="music-icon" />
                 <input type="text" className="search-music-input" placeholder="Search Tracks" value={searchValue} onChange={e => {
                     setSearchValue(e.target.value)
-                    let newSearchResult = []
+                    let newSearchResult: { name: string, duration: string, source: string }[] = []
                     if (e.target.value !== "")
                         newSearchResult = tracks.filter(track => track.name.toLowerCase().includes(e.target.value.toLowerCase()))
                     setSearchResult(newSearchResult)

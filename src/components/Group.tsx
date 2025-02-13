@@ -1,5 +1,5 @@
 import { Menu } from "./Menubar"
-import "../Style/Group.css"
+import "../styles/Group.css"
 
 export default function Groups() {
     return (

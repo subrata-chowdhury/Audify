@@ -1,5 +1,5 @@
 import MusicThumbnail, { SquareThumbnail } from "./Thumbnail"
-import "../Style/Album-recommendation.css"
+import "../styles/Album-recommendation.css"
 import { memo } from "react";
 import { defaultTracks } from "../lib/Data";
 import { useDispatch } from "react-redux";
@@ -12,7 +12,7 @@ const defaultAlbumNames = [
     { name: "Doraemon", thumb: "./Audio/Doraemon/doraemon.jpg" }
 ]
 
-function AlbumRecommendation({ openedAlbum = "Favourite", onClick = () => { } }) {
+function AlbumRecommendation({ openedAlbum = "Favourite", onClick = () => { } }: { openedAlbum: string, onClick: (albumName: string) => void }) {
     const dispatch = useDispatch()
     const albumNames = defaultAlbumNames.filter(item => item.name !== openedAlbum)
 
@@ -45,6 +45,15 @@ function AlbumRecommendation({ openedAlbum = "Favourite", onClick = () => { } })
 }
 
 export default memo(AlbumRecommendation)
+interface AlbumProps {
+    thumbnail?: string;
+    albumName?: string;
+    albumTrackCount?: number;
+    trackThumbnail?: string;
+    trackName: string;
+    trackAuthor?: string;
+    onClick?: () => void;
+}
 
 function Album({
     thumbnail = "./Icons/Music-icon3.jpg",
@@ -54,10 +63,10 @@ function Album({
     trackName,
     trackAuthor,
     onClick = () => { }
-}) {
+}: AlbumProps) {
     if (thumbnail === "") thumbnail = "./Icons/Music-icon3.jpg";
     if (albumName === "") albumName = "Unknown";
-    if (albumTrackCount === "") albumTrackCount = "NaN";
+    // if (albumTrackCount === "") albumTrackCount = "NaN";
 
     return (
         <div className="album" onClick={onClick}>

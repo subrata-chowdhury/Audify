@@ -1,4 +1,4 @@
-import "../Style/three-dot.css"
+import "../styles/three-dot.css"
 
 export default function ThreeDot() {
     return (

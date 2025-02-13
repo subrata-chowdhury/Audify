@@ -1,8 +1,7 @@
 import './App.css'
 
-import bg from "./Assets/1080439.webp"
-import './Style/left-side.css'
-import './Style/right-side.css'
+import './styles/left-side.css'
+import './styles/right-side.css'
 
 import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
@@ -25,7 +24,7 @@ function App() {
 	return (
 		<Suspense fallback={<Loader />}>
 			<Provider store={store}>
-				<img className='bg' src={bg} alt='Background' />
+				<img className='bg' src={'./assets/1080439.webp'} alt='Background' />
 				<AddAudio />
 				<div className="app">
 					<LeftSide />

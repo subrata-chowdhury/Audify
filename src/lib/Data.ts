@@ -1,4 +1,4 @@
-export const defaultTracks = {
+export const defaultTracks: { [key: string]: { name: string, duration: string, source: string }[] } = {
     "Favourite": [{
         name: "Way Back Home",
         duration: "3:19",
