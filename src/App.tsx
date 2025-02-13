@@ -24,7 +24,7 @@ function App() {
 	return (
 		<Suspense fallback={<Loader />}>
 			<Provider store={store}>
-				<img className='bg' src={'./assets/1080439.webp'} alt='Background' />
+				<img className='bg' src={'./1080439.webp'} alt='Background' />
 				<AddAudio />
 				<div className="app">
 					<LeftSide />
