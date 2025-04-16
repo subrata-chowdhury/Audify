@@ -19,17 +19,20 @@ const AddAudio = React.lazy(() => import('./components/Add-audio'));
 
 import store from './lib/ReduxStore';
 import Loader from './components/Loader';
+import { AudioProvider } from './lib/AudioContext';
 
 function App() {
 	return (
 		<Suspense fallback={<Loader />}>
 			<Provider store={store}>
-				<img className='bg' src={'./1080439.webp'} alt='Background' />
-				<AddAudio />
-				<div className="app">
-					<LeftSide />
-					<RightSide />
-				</div>
+				<AudioProvider>
+					<img className='bg' src={'./1080439.webp'} alt='Background' />
+					<AddAudio />
+					<div className="app">
+						<LeftSide />
+						<RightSide />
+					</div>
+				</AudioProvider>
 			</Provider>
 		</Suspense>
 	)

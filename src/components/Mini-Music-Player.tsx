@@ -1,9 +1,10 @@
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import "../styles/Mini-Music-Player.css"
 import MusicThumbnail from "./Thumbnail"
-import React, { memo, useCallback, useEffect, useRef, useState } from "react"
+import React, { memo, useCallback, useEffect, useState } from "react"
 import { setIsPlaying } from "../lib/audioReducer"
 import { RootState } from "../lib/ReduxStore";
+import { useAudio } from "../lib/AudioContext";
 
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
@@ -38,7 +39,7 @@ const Controls = memo(() => {
     const audioSrc = useTypedSelector(state => state.audio.audioSrc)
     const isPlaying = useTypedSelector(state => state.audio.isPlaying)
 
-    const audioRef = useRef(new Audio("./Audio/Way Back Home.mp3"))
+    const { audioRef } = useAudio();
 
     const [repeat, setRepeat] = useState(false);
     const [volumeIcon, setVolumeIcon] = useState("./Icons/volume.svg")
@@ -47,21 +48,13 @@ const Controls = memo(() => {
 
     useEffect(() => {
         audioRef.current.pause()
-        audioRef.current.src = "";
-        audioRef.current = new Audio(audioSrc)
+        audioRef.current.src = audioSrc;
         audioRef.current.play()
     }, [audioSrc])
 
     useEffect(() => {
-        audioRef.current.addEventListener('ended', () => {
-            if (repeat) {
-                audioRef.current.play()
-                dispatch(setIsPlaying(true))
-            } else {
-                audioRef.current.pause()
-                dispatch(setIsPlaying(false))
-            }
-        })
+        audioRef.current.loop = repeat;
+
         audioRef.current.addEventListener('play', () => {
             dispatch(setIsPlaying(true))
         })
